@@ -41,6 +41,8 @@
 
     .app-shell {
       min-height: 100vh;
+      color: var(--text);
+      font-family: var(--font);
       background:
         radial-gradient(circle at 76% 0%, color-mix(in srgb, var(--accent) 17%, transparent), transparent 32rem),
         linear-gradient(180deg, color-mix(in srgb, var(--bg) 96%, white), var(--bg));
@@ -194,6 +196,12 @@
       gap: 12px;
       margin-top: 38px;
       max-width: 760px;
+    }
+
+    .hero-proof {
+      grid-column: 1 / -1;
+      max-width: none;
+      margin-top: 0;
     }
 
     .proof-item {
@@ -802,11 +810,28 @@
 
       .landing { width: min(100% - 24px, 560px); padding-top: 22px; }
       .hero { display: block; min-height: auto; padding-top: 26px; }
-      h1 { font-size: clamp(52px, 15vw, 76px); }
+      h1 {
+        font-size: clamp(42px, 12vw, 60px);
+        line-height: .92;
+      }
       .lead { font-size: 18px; }
       .actions .button { width: 100%; }
-      .proof { grid-template-columns: 1fr; }
-      .visual { min-height: 620px; margin-top: 32px; }
+      .proof {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 26px;
+      }
+      .proof-item {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 13px 14px;
+        background: color-mix(in srgb, var(--surface) 76%, transparent);
+      }
+      .proof-item strong {
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+      .visual { min-height: 590px; margin-top: 28px; }
       .visual::before { inset: 34px -20px 26px 16px; }
       .dashboard-preview { width: 100%; min-height: 430px; padding: 18px; }
       .dash-metrics { grid-template-columns: 1fr; }
@@ -819,6 +844,9 @@
         bottom: auto;
         margin-top: -70px;
         justify-self: end;
+      }
+      .hero-proof {
+        margin-top: 20px;
       }
       .section-grid, .split, .quote, .final-cta { grid-template-columns: 1fr; }
       .split { gap: 14px; }
@@ -1073,9 +1101,6 @@
               <a class="button" href="#cta">${direction.cta}</a>
               <a class="button secondary" href="#produkt">${direction.secondary}</a>
             </div>
-            <div class="proof">
-              ${direction.proof.map((item) => `<div class="proof-item"><strong>${item[0]}</strong>${item[1]}</div>`).join("")}
-            </div>
           </div>
 
           <div class="visual" aria-label="Coach Dashboard und Kunden-App Vorschau">
@@ -1111,6 +1136,10 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          <div class="proof hero-proof">
+            ${direction.proof.map((item) => `<div class="proof-item"><strong>${item[0]}</strong>${item[1]}</div>`).join("")}
           </div>
         </section>
 
