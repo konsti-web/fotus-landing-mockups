@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>fotus · 5 Mobile Mockups</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;460;520;620;760;820&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --black: #050607;
+      --ink: #f5f7f2;
+      --muted: #a8b2ac;
+      --line: rgba(245, 247, 242, .12);
+      --green: #8eea45;
+      --blue: #5aa7ff;
+      --silver: #dfe5df;
+      --graphite: #111519;
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      background: var(--black);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        linear-gradient(115deg, rgba(255,255,255,.032) 0 1px, transparent 1px 18px),
+        radial-gradient(circle at 72% -8%, rgba(142,234,69,.15), transparent 31rem),
+        #050607;
+      font-family: "Geist", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .shell {
+      width: min(1240px, calc(100vw - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 42px 0 28px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 42px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 760;
+      font-size: 22px;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--ink);
+      color: #050607;
+      font-weight: 820;
+    }
+
+    .status {
+      color: #c8d1ca;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 13px;
+      font-weight: 520;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 920px;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: .9;
+      font-weight: 520;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 22px 0 0;
+      max-width: 760px;
+      color: #b7c1bb;
+      font-size: clamp(18px, 2.1vw, 23px);
+      line-height: 1.45;
+      font-weight: 460;
+    }
+
+    .toc {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 30px;
+    }
+
+    .toc a {
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 13px;
+      font-size: 13px;
+      background: rgba(255,255,255,.045);
+    }
+
+    .mockups {
+      display: grid;
+      gap: 26px;
+      padding: 34px 0 58px;
+    }
+
+    .mockup-card {
+      min-height: 720px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025)),
+        #0b0d0f;
+      display: grid;
+      grid-template-columns: .88fr 1.12fr;
+      gap: 28px;
+      padding: 30px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mockup-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--wash, transparent);
+      pointer-events: none;
+    }
+
+    .card-copy,
+    .phone-stage {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 32px;
+      padding: 8px 0 8px 6px;
+    }
+
+    .number {
+      color: var(--accent, var(--green));
+      font-size: 13px;
+      font-weight: 820;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin: 0;
+      max-width: 560px;
+      font-size: clamp(38px, 4.8vw, 70px);
+      line-height: .92;
+      font-weight: 520;
+      letter-spacing: 0;
+    }
+
+    .serif {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .description {
+      margin: 20px 0 0;
+      max-width: 560px;
+      color: #b8c2bc;
+      font-size: 18px;
+      line-height: 1.52;
+    }
+
+    .best-for {
+      display: grid;
+      gap: 10px;
+      max-width: 520px;
+    }
+
+    .best-for div {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 11px;
+      color: #dce4de;
+      font-size: 15px;
+      line-height: 1.42;
+    }
+
+    .bullet {
+      width: 18px;
+      height: 18px;
+      margin-top: 1px;
+      border-radius: 50%;
+      background: var(--accent, var(--green));
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent, var(--green)) 14%, transparent);
+    }
+
+    .phone-stage {
+      min-height: 660px;
+      display: grid;
+      place-items: center;
+    }
+
+    .phone {
+      width: min(390px, 88vw);
+      aspect-ratio: 9 / 19.5;
+      border-radius: 50px;
+      background: #050607;
+      padding: 10px;
+      box-shadow:
+        0 36px 110px rgba(0,0,0,.58),
+        0 0 0 1px rgba(255,255,255,.15);
+      position: relative;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 94px;
+      height: 28px;
+      border-radius: 999px;
+      background: #050607;
+      z-index: 3;
+    }
+
+    .screen {
+      height: 100%;
+      border-radius: 40px;
+      overflow: hidden;
+      color: var(--screen-ink, var(--ink));
+      background: var(--screen-bg, #101316);
+      padding: 56px 20px 20px;
+      position: relative;
+    }
+
+    .screen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--screen-glow, transparent);
+      pointer-events: none;
+    }
+
+    .screen > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .mobile-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 720;
+      margin-bottom: 28px;
+    }
+
+    .menu {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid currentColor;
+      opacity: .45;
+      display: grid;
+      place-items: center;
+      font-size: 17px;
+    }
+
+    .screen h3 {
+      margin: 0;
+      font-size: 45px;
+      line-height: .9;
+      font-weight: 520;
+      letter-spacing: 0;
+    }
+
+    .screen p {
+      margin: 14px 0 0;
+      color: var(--screen-muted, #a7b0aa);
+      font-size: 14px;
+      line-height: 1.42;
+    }
+
+    .mobile-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 15px;
+      border-radius: 999px;
+      background: var(--accent, var(--green));
+      color: #071007;
+      font-size: 13px;
+      font-weight: 820;
+      margin-top: 18px;
+    }
+
+    .ui-stack {
+      display: grid;
+      gap: 11px;
+      margin-top: 24px;
+    }
+
+    .ui-card {
+      border-radius: 20px;
+      border: 1px solid var(--screen-line, rgba(255,255,255,.1));
+      background: var(--ui-card, rgba(255,255,255,.055));
+      padding: 14px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      color: var(--screen-ink, var(--ink));
+      font-size: 14px;
+      font-weight: 620;
+    }
+
+    .row span {
+      display: block;
+      color: var(--screen-muted, #9da8a1);
+      font-size: 12px;
+      font-weight: 460;
+      margin-top: 4px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 6px 9px;
+      background: var(--tag-bg, rgba(142,234,69,.14));
+      color: var(--tag, var(--green));
+      font-size: 11px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+
+    .date-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+      margin-top: 24px;
+    }
+
+    .date-row span {
+      border-radius: 999px;
+      text-align: center;
+      padding: 9px 0;
+      font-size: 12px;
+      background: var(--ui-card, rgba(255,255,255,.055));
+      color: var(--screen-muted, #9da8a1);
+    }
+
+    .date-row .active {
+      color: #071007;
+      background: var(--accent, var(--green));
+      font-weight: 820;
+    }
+
+    .progress {
+      height: 7px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: var(--screen-line, rgba(255,255,255,.12));
+      margin-top: 9px;
+    }
+
+    .progress i {
+      display: block;
+      height: 100%;
+      width: var(--w, 72%);
+      border-radius: inherit;
+      background: var(--accent, var(--green));
+    }
+
+    .dual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .mini-phone-card {
+      min-height: 178px;
+      border-radius: 22px;
+      padding: 12px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .mini-phone-card strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.05;
+      margin-bottom: 22px;
+    }
+
+    .mini-line {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      margin-top: 8px;
+    }
+
+    .media-block {
+      height: 170px;
+      border-radius: 24px;
+      margin-top: 22px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.28), rgba(255,255,255,.02)),
+        repeating-linear-gradient(120deg, rgba(255,255,255,.08) 0 1px, transparent 1px 10px),
+        #222b30;
+      border: 1px solid rgba(255,255,255,.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .media-block::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 58px;
+      height: 58px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: var(--accent, var(--green));
+      clip-path: polygon(38% 28%, 38% 72%, 74% 50%);
+    }
+
+    .signature {
+      margin-top: 26px;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 40px;
+      line-height: .92;
+      color: var(--accent, var(--green));
+    }
+
+    .m1 { --accent: #8eea45; --wash: radial-gradient(circle at 80% 4%, rgba(142,234,69,.14), transparent 24rem); }
+    .m2 { --accent: #f4f7f2; --screen-bg: #f2f5f0; --screen-ink: #111513; --screen-muted: #5b665f; --screen-line: rgba(10,12,14,.1); --ui-card: #ffffff; --tag: #0c5f2d; --tag-bg: #dff5e4; --wash: radial-gradient(circle at 88% 12%, rgba(245,247,242,.12), transparent 28rem); }
+    .m3 { --accent: #5aa7ff; --wash: linear-gradient(120deg, rgba(90,167,255,.12), transparent 55%); }
+    .m4 { --accent: #d7ff72; --screen-bg: #10100d; --wash: radial-gradient(circle at 78% 0%, rgba(215,255,114,.14), transparent 26rem); }
+    .m5 { --accent: #63d7ff; --wash: linear-gradient(135deg, rgba(99,215,255,.1), rgba(142,234,69,.055)); }
+
+    .m2 .phone,
+    .m4 .phone {
+      transform: rotate(-1deg);
+    }
+
+    .m3 .phone {
+      width: min(360px, 84vw);
+    }
+
+    .m5 .screen h3 {
+      font-size: 39px;
+    }
+
+    @media (max-width: 940px) {
+      .shell {
+        width: min(100% - 24px, 560px);
+      }
+
+      header {
+        padding: 28px 0 22px;
+      }
+
+      .brand-row {
+        margin-bottom: 32px;
+      }
+
+      .status {
+        display: none;
+      }
+
+      .mockup-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 20px;
+        border-radius: 28px;
+      }
+
+      .card-copy {
+        padding: 4px 2px 0;
+      }
+
+      h2 {
+        font-size: clamp(38px, 12vw, 58px);
+      }
+
+      .description {
+        font-size: 16px;
+      }
+
+      .phone-stage {
+        min-height: 620px;
+      }
+
+      .phone {
+        width: min(360px, 90vw);
+      }
+
+      .screen h3 {
+        font-size: 42px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <div class="brand-row">
+        <div class="brand"><span class="mark">f</span><span>fotus</span></div>
+        <div class="status">5 präsentierbare Mobile-Mockups</div>
+      </div>
+      <h1>Fünf Richtungen für eine Landing Page, die nicht nach Vorlage aussieht.</h1>
+      <p class="lead">Alle Varianten folgen derselben Philosophie: fotus macht Coaching für Coach und Athlet einfacher, klarer und alltagstauglicher. Der Unterschied liegt in Ton, visueller Sprache und erster Wirkung.</p>
+      <nav class="toc" aria-label="Mockup Navigation">
+        <a href="#m1">01 Quiet Control</a>
+        <a href="#m2">02 Everyday Clarity</a>
+        <a href="#m3">03 Two-App Rhythm</a>
+        <a href="#m4">04 Human Coaching</a>
+        <a href="#m5">05 Precision Flow</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell mockups">
+    <article id="m1" class="mockup-card m1">
+      <div class="card-copy">
+        <div>
+          <div class="number">01 · Premium / Coach-first</div>
+          <h2>Quiet Control</h2>
+          <p class="description">Dunkel, ruhig, hochwertig. Der erste Eindruck ist: fotus gibt Coaches Kontrolle, ohne schwer oder technisch zu wirken.</p>
+        </div>
+        <div class="best-for">
+          <div><span class="bullet"></span><span>Stark, wenn Coaches die Hauptzielgruppe sind.</span></div>
+          <div><span class="bullet"></span><span>Wirkt professionell, seriös und produktnah.</span></div>
+          <div><span class="bullet"></span><span>Passt gut zu „Coaching, das einfach klappt.“</span></div>
+        </div>
+      </div>
+
+      <div class="phone-stage">
+        <div class="phone">
+          <div class="screen">
+            <div class="mobile-nav"><span>fotus</span><span class="menu">≡</span></div>
+            <h3>Coaching, das einfach klappt.</h3>
+            <p>Pläne, Ernährung, Form-Checks und Nachrichten in einem klaren Ablauf.</p>
+            <a class="mobile-button">Early Access</a>
+            <div class="ui-stack">
+              <div class="ui-card row"><div>Heute braucht Aufmerksamkeit<span>Reviews, Pläne und Signale</span></div><div class="tag">3 neu</div></div>
+              <div class="ui-card row"><div>Konsti · Unterkörper A<span>Kniebeuge-Video wartet</span></div><div class="tag">Review</div></div>
+              <div class="ui-card row"><div>Lena · Ernährung<span>Protein seit 3 Tagen niedrig</span></div><div class="tag">Signal</div></div>
+              <div class="ui-card">
+                <div class="row"><div>Team-Überblick<span>12 Athleten aktiv</span></div><div class="tag">81%</div></div>
+                <div class="progress"><i style="--w:81%"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article id="m2" class="mockup-card m2">
+      <div class="card-copy">
+        <div>
+          <div class="number">02 · Hell / Athlete-friendly</div>
+          <h2>Everyday Clarity</h2>
+          <p class="description">Leichter, zugänglicher, weniger „Tool“. Diese Richtung fühlt sich für Athleten besonders verständlich an und betont Alltagstauglichkeit.</p>
+        </div>
+        <div class="best-for">
+          <div><span class="bullet"></span><span>Stark, wenn die App freundlich und massentauglich wirken soll.</span></div>
+          <div><span class="bullet"></span><span>Weniger technisch, mehr „ich weiß sofort, was zu tun ist“.</span></div>
+          <div><span class="bullet"></span><span>Ideal für mobile App-Store- und Waitlist-Kommunikation.</span></div>
+        </div>
+      </div>
+
+      <div class="phone-stage">
+        <div class="phone">
+          <div class="screen">
+            <div class="mobile-nav"><span>fotus</span><span class="menu">≡</span></div>
+            <h3>Heute ist klar.</h3>
+            <p>Dein Plan, deine Ziele und dein Coach-Feedback an einem Ort.</p>
+            <a class="mobile-button">Loslegen</a>
+            <div class="date-row"><span>Mo</span><span>Di</span><span class="active">Mi</span><span>Do</span><span>Fr</span></div>
+            <div class="ui-stack">
+              <div class="ui-card row"><div>Lower Body<span>5 Übungen · 52 Minuten</span></div><div class="tag">Start</div></div>
+              <div class="ui-card">
+                <div class="row"><div>Protein<span>132 von 150 g</span></div><div class="tag">88%</div></div>
+                <div class="progress"><i style="--w:88%"></i></div>
+              </div>
+              <div class="ui-card row"><div>Coach-Feedback<span>Kniebeuge-Review bereit</span></div><div class="tag">Neu</div></div>
+            </div>
+            <div class="signature">einfach dranbleiben</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article id="m3" class="mockup-card m3">
+      <div class="card-copy">
+        <div>
+          <div class="number">03 · System / Two-app story</div>
+          <h2>Two-App Rhythm</h2>
+          <p class="description">Diese Richtung erklärt sofort das Produktmodell: Coach und Athlet haben getrennte Apps, aber einen gemeinsamen Rhythmus.</p>
+        </div>
+        <div class="best-for">
+          <div><span class="bullet"></span><span>Stark, wenn die Zwei-App-Idee im Hero klar werden soll.</span></div>
+          <div><span class="bullet"></span><span>Sehr gut für Investoren, Coaches und Produkt-Demos.</span></div>
+          <div><span class="bullet"></span><span>Erklärt das System, ohne lange Feature-Listen zu brauchen.</span></div>
+        </div>
+      </div>
+
+      <div class="phone-stage">
+        <div class="phone">
+          <div class="screen">
+            <div class="mobile-nav"><span>fotus</span><span class="menu">≡</span></div>
+            <h3>Zwei Apps. Ein Ablauf.</h3>
+            <p>Der Coach steuert, der Athlet führt aus, beide bleiben verbunden.</p>
+            <div class="dual">
+              <div class="mini-phone-card">
+                <strong>Coach</strong>
+                <div class="mini-line" style="width:78%"></div>
+                <div class="mini-line" style="width:56%"></div>
+                <div class="mini-line" style="width:90%; background:var(--accent)"></div>
+              </div>
+              <div class="mini-phone-card">
+                <strong>Athlet</strong>
+                <div class="mini-line" style="width:66%"></div>
+                <div class="mini-line" style="width:88%; background:var(--accent)"></div>
+                <div class="mini-line" style="width:50%"></div>
+              </div>
+            </div>
+            <div class="ui-stack">
+              <div class="ui-card row"><div>Plan übertragen<span>Training und Ziele sind bereit</span></div><div class="tag">Sync</div></div>
+              <div class="ui-card row"><div>Feedback zurück<span>Form-Check ist reviewt</span></div><div class="tag">Fertig</div></div>
+              <div class="ui-card row"><div>Kommunikation<span>Fragen bleiben im Kontext</span></div><div class="tag">Chat</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article id="m4" class="mockup-card m4">
+      <div class="card-copy">
+        <div>
+          <div class="number">04 · Emotional / Human coaching</div>
+          <h2><span class="serif">Human</span> Coaching</h2>
+          <p class="description">Mehr Marke, mehr Wärme, aber trotzdem nicht kitschig. Diese Richtung verkauft nicht nur Software, sondern die Beziehung zwischen Coach und Athlet.</p>
+        </div>
+        <div class="best-for">
+          <div><span class="bullet"></span><span>Stark, wenn fotus nahbarer und weniger SaaS wirken soll.</span></div>
+          <div><span class="bullet"></span><span>Gut für eine Landing Page mit mehr Storytelling und Testimonials.</span></div>
+          <div><span class="bullet"></span><span>Betont: Es soll sich für beide Seiten einfach und menschlich anfühlen.</span></div>
+        </div>
+      </div>
+
+      <div class="phone-stage">
+        <div class="phone">
+          <div class="screen">
+            <div class="mobile-nav"><span>fotus</span><span class="menu">≡</span></div>
+            <h3>Coaching, das sich leicht anfühlt.</h3>
+            <p>Ein Ort für Pläne, Ziele, Rückmeldungen und die kleinen Hinweise, die Fortschritt möglich machen.</p>
+            <div class="media-block"></div>
+            <div class="ui-stack">
+              <div class="ui-card row"><div>Coach-Hinweis<span>„Heute ruhig starten, Fokus Technik.“</span></div><div class="tag">Neu</div></div>
+              <div class="ui-card row"><div>Training erledigt<span>4 von 5 Übungen abgeschlossen</span></div><div class="tag">80%</div></div>
+            </div>
+            <div class="signature">ein System, das mitdenkt</div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article id="m5" class="mockup-card m5">
+      <div class="card-copy">
+        <div>
+          <div class="number">05 · Präzise / Performance product</div>
+          <h2>Precision Flow</h2>
+          <p class="description">Sehr klar, modern und leistungsorientiert. Diese Richtung wirkt wie ein ernsthaftes Produkt für Coaches, die mit Struktur und Daten arbeiten.</p>
+        </div>
+        <div class="best-for">
+          <div><span class="bullet"></span><span>Stark für ambitionierte Coaches und datenbewusste Athleten.</span></div>
+          <div><span class="bullet"></span><span>Mehr Produktivität, weniger Lifestyle.</span></div>
+          <div><span class="bullet"></span><span>Gut, wenn fotus als professionelles Coaching-OS positioniert werden soll.</span></div>
+        </div>
+      </div>
+
+      <div class="phone-stage">
+        <div class="phone">
+          <div class="screen">
+            <div class="mobile-nav"><span>fotus</span><span class="menu">≡</span></div>
+            <h3>Alles im richtigen Kontext.</h3>
+            <p>Plan, Ausführung, Ernährung und Review werden zu einem präzisen Coaching-Flow.</p>
+            <div class="ui-stack">
+              <div class="ui-card">
+                <div class="row"><div>Plan-Adhärenz<span>Diese Woche</span></div><div class="tag">86%</div></div>
+                <div class="progress"><i style="--w:86%"></i></div>
+              </div>
+              <div class="ui-card">
+                <div class="row"><div>Makro-Konstanz<span>Letzte 7 Tage</span></div><div class="tag">74%</div></div>
+                <div class="progress"><i style="--w:74%"></i></div>
+              </div>
+              <div class="ui-card">
+                <div class="row"><div>Form-Check Qualität<span>Technikfeedback</span></div><div class="tag">Review</div></div>
+                <div class="progress"><i style="--w:64%"></i></div>
+              </div>
+              <div class="ui-card row"><div>Nächste Aktion<span>Plan für Freitag anpassen</span></div><div class="tag">Heute</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+</body>
+</html>
