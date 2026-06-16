@@ -3,238 +3,245 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>fotus · 5 Mobile Mockups</title>
+  <title>fotus · 5 Landing Page Richtungen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;460;520;620;760;820&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;460;520;620;760;840&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,600&display=swap" rel="stylesheet">
   <style>
     :root {
+      --bg: #050607;
+      --surface: #101316;
+      --surface-2: #171b20;
+      --text: #f4f7f2;
+      --muted: #a9b4ad;
+      --line: rgba(244, 247, 242, .12);
+      --accent: #8eea45;
+      --accent-2: #5aa7ff;
+      --paper: #f6f8f3;
+      --ink: #090b0d;
+      --font: "Geist", ui-sans-serif, system-ui, sans-serif;
       color-scheme: dark;
-      --black: #050607;
-      --ink: #f5f7f2;
-      --muted: #a8b2ac;
-      --line: rgba(245, 247, 242, .12);
-      --green: #8eea45;
-      --blue: #5aa7ff;
-      --silver: #dfe5df;
-      --graphite: #111519;
-      --radius: 28px;
     }
 
     * { box-sizing: border-box; }
-
-    html {
-      background: var(--black);
-      scroll-behavior: smooth;
-    }
-
+    html { background: var(--bg); scroll-behavior: smooth; }
     body {
       margin: 0;
       min-height: 100vh;
-      color: var(--ink);
-      background:
-        linear-gradient(115deg, rgba(255,255,255,.032) 0 1px, transparent 1px 18px),
-        radial-gradient(circle at 72% -8%, rgba(142,234,69,.15), transparent 31rem),
-        #050607;
-      font-family: "Geist", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
       letter-spacing: 0;
       -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
     }
 
-    .shell {
-      width: min(1240px, calc(100vw - 36px));
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+
+    .app-shell {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 76% 0%, color-mix(in srgb, var(--accent) 17%, transparent), transparent 32rem),
+        linear-gradient(180deg, color-mix(in srgb, var(--bg) 96%, white), var(--bg));
+    }
+
+    .chooser {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .chooser-inner {
+      width: min(1240px, calc(100vw - 32px));
       margin: 0 auto;
-    }
-
-    header {
-      padding: 42px 0 28px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .brand-row {
+      min-height: 72px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 24px;
-      margin-bottom: 42px;
+      justify-content: space-between;
+      gap: 18px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-weight: 760;
-      font-size: 22px;
+      gap: 10px;
+      font-weight: 840;
+      font-size: 20px;
+      white-space: nowrap;
     }
 
     .mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 11px;
+      background: var(--text);
+      color: var(--bg);
       display: grid;
       place-items: center;
-      background: var(--ink);
-      color: #050607;
-      font-weight: 820;
+      font-weight: 840;
     }
 
-    .status {
-      color: #c8d1ca;
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 0;
+      scrollbar-width: none;
+    }
+
+    .tabs::-webkit-scrollbar { display: none; }
+
+    .tab {
       border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface) 72%, transparent);
+      color: var(--muted);
       border-radius: 999px;
-      padding: 9px 13px;
+      min-height: 38px;
+      padding: 0 13px;
+      cursor: pointer;
+      white-space: nowrap;
       font-size: 13px;
-      font-weight: 520;
+      font-weight: 620;
+    }
+
+    .tab[aria-selected="true"] {
+      color: var(--bg);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .landing {
+      --section-gap: clamp(68px, 9vw, 128px);
+      width: min(1240px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 38px 0 80px;
+    }
+
+    .hero {
+      min-height: calc(100svh - 110px);
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: clamp(32px, 6vw, 76px);
+      align-items: center;
+      padding: 32px 0 54px;
+    }
+
+    .eyeline {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 760;
+      margin-bottom: 20px;
     }
 
     h1 {
       margin: 0;
-      max-width: 920px;
-      font-size: clamp(48px, 7vw, 96px);
-      line-height: .9;
-      font-weight: 520;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      margin: 22px 0 0;
-      max-width: 760px;
-      color: #b7c1bb;
-      font-size: clamp(18px, 2.1vw, 23px);
-      line-height: 1.45;
-      font-weight: 460;
-    }
-
-    .toc {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 30px;
-    }
-
-    .toc a {
-      color: var(--ink);
-      text-decoration: none;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 10px 13px;
-      font-size: 13px;
-      background: rgba(255,255,255,.045);
-    }
-
-    .mockups {
-      display: grid;
-      gap: 26px;
-      padding: 34px 0 58px;
-    }
-
-    .mockup-card {
-      min-height: 720px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 34px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025)),
-        #0b0d0f;
-      display: grid;
-      grid-template-columns: .88fr 1.12fr;
-      gap: 28px;
-      padding: 30px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .mockup-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: var(--wash, transparent);
-      pointer-events: none;
-    }
-
-    .card-copy,
-    .phone-stage {
-      position: relative;
-      z-index: 1;
-    }
-
-    .card-copy {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 32px;
-      padding: 8px 0 8px 6px;
-    }
-
-    .number {
-      color: var(--accent, var(--green));
-      font-size: 13px;
-      font-weight: 820;
-      margin-bottom: 20px;
-    }
-
-    h2 {
-      margin: 0;
-      max-width: 560px;
-      font-size: clamp(38px, 4.8vw, 70px);
-      line-height: .92;
+      max-width: 800px;
+      font-size: clamp(58px, 8.5vw, 118px);
+      line-height: .86;
       font-weight: 520;
       letter-spacing: 0;
     }
 
     .serif {
-      font-family: "Instrument Serif", Georgia, serif;
+      font-family: var(--serif, "Instrument Serif", Georgia, serif);
       font-style: italic;
       font-weight: 400;
     }
 
-    .description {
-      margin: 20px 0 0;
-      max-width: 560px;
-      color: #b8c2bc;
-      font-size: 18px;
-      line-height: 1.52;
+    .lead {
+      margin: 26px 0 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.46;
+      font-weight: 460;
     }
 
-    .best-for {
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      min-height: 46px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      font-size: 14px;
+      font-weight: 760;
+      background: var(--accent);
+      color: var(--bg);
+      border: 1px solid var(--accent);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .proof {
       display: grid;
-      gap: 10px;
-      max-width: 520px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 38px;
+      max-width: 760px;
     }
 
-    .best-for div {
-      display: grid;
-      grid-template-columns: 18px 1fr;
-      gap: 11px;
-      color: #dce4de;
-      font-size: 15px;
-      line-height: 1.42;
+    .proof-item {
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      color: color-mix(in srgb, var(--text) 86%, transparent);
+      font-size: 14px;
+      line-height: 1.36;
     }
 
-    .bullet {
-      width: 18px;
-      height: 18px;
-      margin-top: 1px;
-      border-radius: 50%;
-      background: var(--accent, var(--green));
-      box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent, var(--green)) 14%, transparent);
+    .proof-item strong {
+      display: block;
+      color: var(--accent);
+      font-size: 26px;
+      line-height: 1;
+      margin-bottom: 7px;
     }
 
-    .phone-stage {
-      min-height: 660px;
+    .visual {
+      position: relative;
+      min-height: 650px;
       display: grid;
       place-items: center;
+    }
+
+    .visual::before {
+      content: "";
+      position: absolute;
+      inset: 8% 0 6% 10%;
+      border-radius: 44px;
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, transparent), transparent 45%),
+        repeating-linear-gradient(120deg, rgba(255,255,255,.055) 0 1px, transparent 1px 11px),
+        color-mix(in srgb, var(--surface) 84%, black);
+      border: 1px solid var(--line);
+      transform: rotate(var(--panel-rotate, -3deg));
     }
 
     .phone {
       width: min(390px, 88vw);
       aspect-ratio: 9 / 19.5;
       border-radius: 50px;
-      background: #050607;
       padding: 10px;
-      box-shadow:
-        0 36px 110px rgba(0,0,0,.58),
-        0 0 0 1px rgba(255,255,255,.15);
+      background: #050607;
+      box-shadow: 0 42px 120px rgba(0,0,0,.56), 0 0 0 1px rgba(255,255,255,.15);
       position: relative;
+      z-index: 2;
+      transform: rotate(var(--phone-rotate, 2deg));
     }
 
     .phone::before {
@@ -247,16 +254,16 @@
       height: 28px;
       border-radius: 999px;
       background: #050607;
-      z-index: 3;
+      z-index: 4;
     }
 
     .screen {
       height: 100%;
-      border-radius: 40px;
       overflow: hidden;
-      color: var(--screen-ink, var(--ink));
-      background: var(--screen-bg, #101316);
-      padding: 56px 20px 20px;
+      border-radius: 40px;
+      padding: 58px 20px 20px;
+      background: var(--screen-bg);
+      color: var(--screen-text);
       position: relative;
     }
 
@@ -264,480 +271,698 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: var(--screen-glow, transparent);
+      background: var(--screen-wash, transparent);
       pointer-events: none;
     }
 
-    .screen > * {
-      position: relative;
-      z-index: 1;
-    }
+    .screen > * { position: relative; z-index: 1; }
 
-    .mobile-nav {
+    .mobile-top {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      font-weight: 760;
       font-size: 13px;
-      font-weight: 720;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
-    .menu {
+    .hamburger {
       width: 32px;
       height: 32px;
       border-radius: 50%;
       border: 1px solid currentColor;
-      opacity: .45;
       display: grid;
       place-items: center;
-      font-size: 17px;
+      opacity: .45;
     }
 
-    .screen h3 {
+    .screen h2 {
       margin: 0;
-      font-size: 45px;
+      font-size: 42px;
       line-height: .9;
       font-weight: 520;
       letter-spacing: 0;
     }
 
     .screen p {
-      margin: 14px 0 0;
-      color: var(--screen-muted, #a7b0aa);
+      margin: 13px 0 0;
+      color: var(--screen-muted);
       font-size: 14px;
       line-height: 1.42;
     }
 
-    .mobile-button {
+    .mobile-cta {
       display: inline-flex;
+      margin-top: 18px;
+      min-height: 40px;
       align-items: center;
       justify-content: center;
-      min-height: 40px;
-      padding: 0 15px;
       border-radius: 999px;
-      background: var(--accent, var(--green));
-      color: #071007;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0 14px;
       font-size: 13px;
-      font-weight: 820;
-      margin-top: 18px;
+      font-weight: 760;
     }
 
-    .ui-stack {
+    .app-stack {
       display: grid;
       gap: 11px;
       margin-top: 24px;
     }
 
-    .ui-card {
+    .app-card {
       border-radius: 20px;
-      border: 1px solid var(--screen-line, rgba(255,255,255,.1));
-      background: var(--ui-card, rgba(255,255,255,.055));
+      border: 1px solid var(--screen-line);
+      background: var(--screen-card);
       padding: 14px;
     }
 
-    .row {
+    .app-row {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 14px;
       align-items: center;
-      color: var(--screen-ink, var(--ink));
+      gap: 14px;
       font-size: 14px;
-      font-weight: 620;
+      font-weight: 700;
     }
 
-    .row span {
+    .app-row span {
       display: block;
-      color: var(--screen-muted, #9da8a1);
+      margin-top: 4px;
+      color: var(--screen-muted);
       font-size: 12px;
       font-weight: 460;
-      margin-top: 4px;
     }
 
     .tag {
       border-radius: 999px;
       padding: 6px 9px;
-      background: var(--tag-bg, rgba(142,234,69,.14));
-      color: var(--tag, var(--green));
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+      color: var(--accent);
       font-size: 11px;
       font-weight: 760;
       white-space: nowrap;
     }
 
-    .date-row {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 7px;
-      margin-top: 24px;
-    }
-
-    .date-row span {
-      border-radius: 999px;
-      text-align: center;
-      padding: 9px 0;
-      font-size: 12px;
-      background: var(--ui-card, rgba(255,255,255,.055));
-      color: var(--screen-muted, #9da8a1);
-    }
-
-    .date-row .active {
-      color: #071007;
-      background: var(--accent, var(--green));
-      font-weight: 820;
-    }
-
     .progress {
       height: 7px;
       border-radius: 999px;
+      background: var(--screen-line);
       overflow: hidden;
-      background: var(--screen-line, rgba(255,255,255,.12));
-      margin-top: 9px;
+      margin-top: 10px;
     }
 
     .progress i {
       display: block;
       height: 100%;
-      width: var(--w, 72%);
+      width: var(--w);
       border-radius: inherit;
-      background: var(--accent, var(--green));
+      background: var(--accent);
     }
 
-    .dual {
+    .page-section {
+      padding: var(--section-gap) 0 0;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(28px, 5vw, 74px);
+      align-items: start;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(40px, 6vw, 76px);
+      line-height: .92;
+      font-weight: 520;
+      letter-spacing: 0;
+    }
+
+    .section-copy {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+      max-width: 690px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .feature {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 16px;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .feature:first-child { border-top: 0; padding-top: 0; }
+
+    .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 840;
+    }
+
+    .feature h3 {
+      margin: 0;
+      font-size: 23px;
+      line-height: 1.08;
+      font-weight: 620;
+    }
+
+    .feature p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 18px;
+      gap: 18px;
+      margin-top: 38px;
     }
 
-    .mini-phone-card {
-      min-height: 178px;
-      border-radius: 22px;
-      padding: 12px;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.1);
-    }
-
-    .mini-phone-card strong {
-      display: block;
-      font-size: 15px;
-      line-height: 1.05;
-      margin-bottom: 22px;
-    }
-
-    .mini-line {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.18);
-      margin-top: 8px;
-    }
-
-    .media-block {
-      height: 170px;
-      border-radius: 24px;
-      margin-top: 22px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.28), rgba(255,255,255,.02)),
-        repeating-linear-gradient(120deg, rgba(255,255,255,.08) 0 1px, transparent 1px 10px),
-        #222b30;
-      border: 1px solid rgba(255,255,255,.12);
-      position: relative;
+    .role-card {
+      min-height: 380px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: color-mix(in srgb, var(--surface) 82%, transparent);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       overflow: hidden;
+      position: relative;
     }
 
-    .media-block::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 58px;
-      height: 58px;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background: var(--accent, var(--green));
-      clip-path: polygon(38% 28%, 38% 72%, 74% 50%);
+    .role-card h3 {
+      margin: 0;
+      font-size: 32px;
+      line-height: .96;
+      font-weight: 560;
     }
 
-    .signature {
-      margin-top: 26px;
-      font-family: "Instrument Serif", Georgia, serif;
-      font-size: 40px;
+    .role-card p {
+      margin: 13px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .mini-ui {
+      display: grid;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .mini-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 620;
+    }
+
+    .mini-row span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 460;
+    }
+
+    .quote {
+      margin-top: var(--section-gap);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      padding: clamp(30px, 6vw, 62px);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent),
+        color-mix(in srgb, var(--surface) 82%, transparent);
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .quote-title {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 68px);
       line-height: .92;
-      color: var(--accent, var(--green));
+      font-weight: 520;
     }
 
-    .m1 { --accent: #8eea45; --wash: radial-gradient(circle at 80% 4%, rgba(142,234,69,.14), transparent 24rem); }
-    .m2 { --accent: #f4f7f2; --screen-bg: #f2f5f0; --screen-ink: #111513; --screen-muted: #5b665f; --screen-line: rgba(10,12,14,.1); --ui-card: #ffffff; --tag: #0c5f2d; --tag-bg: #dff5e4; --wash: radial-gradient(circle at 88% 12%, rgba(245,247,242,.12), transparent 28rem); }
-    .m3 { --accent: #5aa7ff; --wash: linear-gradient(120deg, rgba(90,167,255,.12), transparent 55%); }
-    .m4 { --accent: #d7ff72; --screen-bg: #10100d; --wash: radial-gradient(circle at 78% 0%, rgba(215,255,114,.14), transparent 26rem); }
-    .m5 { --accent: #63d7ff; --wash: linear-gradient(135deg, rgba(99,215,255,.1), rgba(142,234,69,.055)); }
-
-    .m2 .phone,
-    .m4 .phone {
-      transform: rotate(-1deg);
+    .quote p {
+      margin: 0;
+      color: color-mix(in srgb, var(--text) 86%, transparent);
+      font-size: clamp(20px, 2.3vw, 29px);
+      line-height: 1.34;
     }
 
-    .m3 .phone {
-      width: min(360px, 84vw);
+    .final-cta {
+      margin-top: var(--section-gap);
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 24px;
+      align-items: end;
     }
 
-    .m5 .screen h3 {
-      font-size: 39px;
+    .cta-card {
+      border-radius: 34px;
+      background: var(--text);
+      color: var(--bg);
+      padding: clamp(30px, 5vw, 56px);
     }
 
-    @media (max-width: 940px) {
-      .shell {
-        width: min(100% - 24px, 560px);
+    .cta-card h2 {
+      margin: 0;
+      font-size: clamp(40px, 5.4vw, 76px);
+      line-height: .9;
+      font-weight: 520;
+    }
+
+    .cta-card p {
+      color: color-mix(in srgb, var(--bg) 72%, transparent);
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .cta-note {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.5;
+      padding-bottom: 10px;
+    }
+
+    .theme-everyday {
+      --bg: #f3f6f0;
+      --surface: #ffffff;
+      --surface-2: #e8eee6;
+      --text: #0d130f;
+      --muted: #56625b;
+      --line: rgba(13,19,15,.12);
+      --accent: #1f8f4c;
+      --accent-2: #397be8;
+      --font: "Manrope", ui-sans-serif, system-ui, sans-serif;
+      --screen-bg: #f8faf6;
+      --screen-text: #101612;
+      --screen-muted: #627068;
+      --screen-line: rgba(16,22,18,.11);
+      --screen-card: #ffffff;
+      color-scheme: light;
+    }
+
+    .theme-human {
+      --bg: #080807;
+      --surface: #14130f;
+      --surface-2: #202018;
+      --text: #f8f4ea;
+      --muted: #bbb5a7;
+      --line: rgba(248,244,234,.13);
+      --accent: #d7ff72;
+      --accent-2: #f0ce8d;
+      --font: "Geist", ui-sans-serif, system-ui, sans-serif;
+      --serif: "Newsreader", Georgia, serif;
+      --screen-bg: #11110d;
+      --screen-text: #f8f4ea;
+      --screen-muted: #b7b0a2;
+      --screen-line: rgba(248,244,234,.12);
+      --screen-card: rgba(248,244,234,.06);
+    }
+
+    .theme-precision {
+      --bg: #05070a;
+      --surface: #0d1217;
+      --surface-2: #151d24;
+      --text: #f2f8fb;
+      --muted: #9fb1bc;
+      --line: rgba(242,248,251,.12);
+      --accent: #63d7ff;
+      --accent-2: #8eea45;
+      --font: "Geist", ui-sans-serif, system-ui, sans-serif;
+      --screen-bg: #091015;
+      --screen-text: #f2f8fb;
+      --screen-muted: #93a7b2;
+      --screen-line: rgba(242,248,251,.12);
+      --screen-card: rgba(242,248,251,.055);
+    }
+
+    .theme-coach {
+      --bg: #07080a;
+      --surface: #101216;
+      --surface-2: #191c22;
+      --text: #f7f8f4;
+      --muted: #adb5ae;
+      --line: rgba(247,248,244,.12);
+      --accent: #a3ff4f;
+      --accent-2: #ffffff;
+      --font: "Geist", ui-sans-serif, system-ui, sans-serif;
+      --screen-bg: #111419;
+      --screen-text: #f7f8f4;
+      --screen-muted: #9fa9a3;
+      --screen-line: rgba(247,248,244,.12);
+      --screen-card: rgba(247,248,244,.055);
+      --panel-rotate: 2deg;
+      --phone-rotate: -2deg;
+    }
+
+    .theme-launch {
+      --bg: #f7f7f4;
+      --surface: #ffffff;
+      --surface-2: #ededeb;
+      --text: #070807;
+      --muted: #626a63;
+      --line: rgba(7,8,7,.12);
+      --accent: #111;
+      --accent-2: #63aaff;
+      --font: "Geist", ui-sans-serif, system-ui, sans-serif;
+      --screen-bg: #090a0b;
+      --screen-text: #f7f7f4;
+      --screen-muted: #a4aaa4;
+      --screen-line: rgba(247,247,244,.12);
+      --screen-card: rgba(247,247,244,.06);
+      color-scheme: light;
+    }
+
+    @media (max-width: 920px) {
+      .chooser-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px 0;
       }
 
-      header {
-        padding: 28px 0 22px;
-      }
-
-      .brand-row {
-        margin-bottom: 32px;
-      }
-
-      .status {
-        display: none;
-      }
-
-      .mockup-card {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding: 20px;
-        border-radius: 28px;
-      }
-
-      .card-copy {
-        padding: 4px 2px 0;
-      }
-
-      h2 {
-        font-size: clamp(38px, 12vw, 58px);
-      }
-
-      .description {
-        font-size: 16px;
-      }
-
-      .phone-stage {
-        min-height: 620px;
-      }
-
-      .phone {
-        width: min(360px, 90vw);
-      }
-
-      .screen h3 {
-        font-size: 42px;
-      }
+      .landing { width: min(100% - 24px, 560px); padding-top: 22px; }
+      .hero { display: block; min-height: auto; padding-top: 26px; }
+      h1 { font-size: clamp(52px, 15vw, 76px); }
+      .lead { font-size: 18px; }
+      .actions .button { width: 100%; }
+      .proof { grid-template-columns: 1fr; }
+      .visual { min-height: 620px; margin-top: 32px; }
+      .visual::before { inset: 34px -20px 26px 16px; }
+      .phone { width: min(360px, 90vw); transform: none; }
+      .section-grid, .split, .quote, .final-cta { grid-template-columns: 1fr; }
+      .split { gap: 14px; }
+      .role-card { min-height: 320px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="shell">
-      <div class="brand-row">
-        <div class="brand"><span class="mark">f</span><span>fotus</span></div>
-        <div class="status">5 präsentierbare Mobile-Mockups</div>
+  <div class="app-shell" id="shell">
+    <header class="chooser">
+      <div class="chooser-inner">
+        <a href="#" class="brand" aria-label="fotus Landing Page Richtungen"><span class="mark">f</span><span>fotus</span></a>
+        <nav class="tabs" id="tabs" aria-label="Landing Page Richtungen"></nav>
       </div>
-      <h1>Fünf Richtungen für eine Landing Page, die nicht nach Vorlage aussieht.</h1>
-      <p class="lead">Alle Varianten folgen derselben Philosophie: fotus macht Coaching für Coach und Athlet einfacher, klarer und alltagstauglicher. Der Unterschied liegt in Ton, visueller Sprache und erster Wirkung.</p>
-      <nav class="toc" aria-label="Mockup Navigation">
-        <a href="#m1">01 Quiet Control</a>
-        <a href="#m2">02 Everyday Clarity</a>
-        <a href="#m3">03 Two-App Rhythm</a>
-        <a href="#m4">04 Human Coaching</a>
-        <a href="#m5">05 Precision Flow</a>
-      </nav>
-    </div>
-  </header>
+    </header>
 
-  <main class="shell mockups">
-    <article id="m1" class="mockup-card m1">
-      <div class="card-copy">
-        <div>
-          <div class="number">01 · Premium / Coach-first</div>
-          <h2>Quiet Control</h2>
-          <p class="description">Dunkel, ruhig, hochwertig. Der erste Eindruck ist: fotus gibt Coaches Kontrolle, ohne schwer oder technisch zu wirken.</p>
-        </div>
-        <div class="best-for">
-          <div><span class="bullet"></span><span>Stark, wenn Coaches die Hauptzielgruppe sind.</span></div>
-          <div><span class="bullet"></span><span>Wirkt professionell, seriös und produktnah.</span></div>
-          <div><span class="bullet"></span><span>Passt gut zu „Coaching, das einfach klappt.“</span></div>
-        </div>
-      </div>
+    <main class="landing" id="landing"></main>
+  </div>
 
-      <div class="phone-stage">
-        <div class="phone">
-          <div class="screen">
-            <div class="mobile-nav"><span>fotus</span><span class="menu">≡</span></div>
-            <h3>Coaching, das einfach klappt.</h3>
-            <p>Pläne, Ernährung, Form-Checks und Nachrichten in einem klaren Ablauf.</p>
-            <a class="mobile-button">Early Access</a>
-            <div class="ui-stack">
-              <div class="ui-card row"><div>Heute braucht Aufmerksamkeit<span>Reviews, Pläne und Signale</span></div><div class="tag">3 neu</div></div>
-              <div class="ui-card row"><div>Konsti · Unterkörper A<span>Kniebeuge-Video wartet</span></div><div class="tag">Review</div></div>
-              <div class="ui-card row"><div>Lena · Ernährung<span>Protein seit 3 Tagen niedrig</span></div><div class="tag">Signal</div></div>
-              <div class="ui-card">
-                <div class="row"><div>Team-Überblick<span>12 Athleten aktiv</span></div><div class="tag">81%</div></div>
-                <div class="progress"><i style="--w:81%"></i></div>
+  <script>
+    const directions = [
+      {
+        id: "everyday",
+        name: "Everyday Clarity",
+        theme: "theme-everyday",
+        label: "01 · Favorit 2 · hell, klar, benutzerfreundlich",
+        headline: "Heute ist klar.",
+        lead: "fotus zeigt Athleten, was heute zählt: Training, Ernährung, Coach-Feedback und Nachrichten in einem Ablauf, der nicht erklärt werden muss.",
+        cta: "Early Access anfragen",
+        secondary: "Produkt ansehen",
+        proof: [["1", "Tagesplan statt verstreuter Aufgaben"], ["2", "Apps für Coach und Athlet"], ["0", "unnötige Rückfragen im Alltag"]],
+        phoneTitle: "Heute ist klar.",
+        phoneCopy: "Dein Training, deine Ziele und dein Coach-Feedback an einem Ort.",
+        phoneCards: [
+          ["Lower Body", "5 Übungen · 52 Minuten", "Start", 72],
+          ["Protein", "132 von 150 g", "88%", 88],
+          ["Coach-Feedback", "Kniebeuge-Review bereit", "Neu", 100]
+        ],
+        philosophyTitle: "Einfach genug für jeden Tag.",
+        philosophyCopy: "Diese Richtung verkauft fotus als Produkt, das Athleten sofort verstehen. Weniger Druck, weniger Bedienlogik, mehr Klarheit im Alltag.",
+        features: [
+          ["A", "Athlet zuerst", "Die Landing Page beginnt beim konkreten Nutzen: App öffnen, wissen was ansteht, durchziehen."],
+          ["C", "Coach bleibt sichtbar", "Coaching ist präsent, aber nicht schwer. Feedback und Ziele fühlen sich wie Unterstützung an."],
+          ["U", "Usability als Marke", "Der Look transportiert: fotus ist nicht kompliziert, sondern ein System, das einfach funktioniert."]
+        ],
+        roles: [
+          ["fotus Coach", "Plant, setzt Ziele, gibt Feedback und sieht, wo Aufmerksamkeit gebraucht wird.", ["Review offen", "Plan läuft aus", "Makro-Signal"]],
+          ["fotus Fitness", "Führt Athleten durch Training, Ernährung, Form-Checks und Nachrichten.", ["Heute trainieren", "Makros im Blick", "Feedback erhalten"]]
+        ],
+        quoteTitle: "Nicht mehr überlegen, wo etwas steht.",
+        quote: "Diese Richtung ist am besten, wenn fotus freundlich, zugänglich und sehr benutzerfreundlich wirken soll."
+      },
+      {
+        id: "human",
+        name: "Human Coaching",
+        theme: "theme-human",
+        label: "02 · Favorit 4 · emotional, editorial, menschlich",
+        headline: "<span class='serif'>Coaching</span>, das sich leicht anfühlt.",
+        lead: "fotus bringt Struktur in die Beziehung zwischen Coach und Athlet, ohne sie in ein kaltes Dashboard zu verwandeln.",
+        cta: "Early Access anfragen",
+        secondary: "Story ansehen",
+        proof: [["nah", "Feedback bleibt persönlich"], ["klar", "nächster Schritt statt Tool-Chaos"], ["ruhig", "weniger Verwaltung für beide Seiten"]],
+        phoneTitle: "Dein Coach ist da.",
+        phoneCopy: "Plan, Hinweis, Form-Check und Gespräch bleiben im Zusammenhang.",
+        phoneCards: [
+          ["Coach-Hinweis", "Heute ruhig starten, Fokus Technik.", "Neu", 100],
+          ["Training", "4 von 5 Übungen abgeschlossen", "80%", 80],
+          ["Form-Check", "Video ist beim Coach", "Wartet", 55]
+        ],
+        philosophyTitle: "Struktur, ohne Distanz zu schaffen.",
+        philosophyCopy: "Diese Richtung macht die Beziehung zwischen Coach und Athlet zum emotionalen Zentrum. Sie eignet sich, wenn fotus nicht nur als Tool, sondern als Begleiter wahrgenommen werden soll.",
+        features: [
+          ["H", "Menschliche Oberfläche", "Die UI wirkt weich genug für Alltag und ernst genug für professionelles Coaching."],
+          ["F", "Feedback mit Kontext", "Rückmeldungen hängen an Übung, Ziel und Session. Dadurch wirkt Coaching präzise, aber nicht bürokratisch."],
+          ["S", "Story statt Feature-Liste", "Die Landing Page erzählt, warum es leichter wird, nicht nur was technisch möglich ist."]
+        ],
+        roles: [
+          ["Coach", "Gibt klare Hinweise, ohne aus Chat, Tabellen und Videos einen Verwaltungsjob zu machen.", ["Hinweis senden", "Review geben", "Ziel anpassen"]],
+          ["Athlet", "Sieht den nächsten Schritt und fühlt sich begleitet statt kontrolliert.", ["Einheit starten", "Video senden", "Antwort lesen"]]
+        ],
+        quoteTitle: "Coaching soll sich nicht nach Verwaltung anfühlen.",
+        quote: "Diese Richtung ist am besten, wenn fotus emotional, hochwertig und markenstärker wirken soll."
+      },
+      {
+        id: "precision",
+        name: "Precision Flow",
+        theme: "theme-precision",
+        label: "03 · Favorit 5 · präzise, datenstark, professionell",
+        headline: "Alles im richtigen Kontext.",
+        lead: "fotus verbindet Plan, Ausführung, Ernährung, Form-Check und Kommunikation zu einem präzisen Flow für messbaren Fortschritt.",
+        cta: "Early Access anfragen",
+        secondary: "Flow ansehen",
+        proof: [["86%", "Plan-Adhärenz im Blick"], ["74%", "Makro-Konstanz sichtbar"], ["1", "nächste sinnvolle Aktion"]],
+        phoneTitle: "Precision Flow.",
+        phoneCopy: "Jede Rückmeldung landet dort, wo sie den nächsten Fortschritt auslöst.",
+        phoneCards: [
+          ["Plan-Adhärenz", "Diese Woche", "86%", 86],
+          ["Makro-Konstanz", "Letzte 7 Tage", "74%", 74],
+          ["Form-Check Qualität", "Technikfeedback", "Review", 64]
+        ],
+        philosophyTitle: "Professionell, aber nicht kompliziert.",
+        philosophyCopy: "Diese Richtung positioniert fotus als ernsthaftes Coaching-System. Sie eignet sich für Coaches, die Struktur, Daten und klare nächste Aktionen wollen.",
+        features: [
+          ["P", "Plan und Ausführung verbunden", "Geplante Arbeit und tatsächliche Logs bleiben vergleichbar, ohne dass Athleten Tabellen pflegen müssen."],
+          ["E", "Ernährung im Coaching-Kontext", "Makros werden nicht isoliert betrachtet, sondern als Teil des Fortschritts."],
+          ["R", "Reviews werden actionable", "Form-Checks führen zu konkreten Anpassungen statt losen Kommentaren."]
+        ],
+        roles: [
+          ["Coach Dashboard", "Zeigt offene Reviews, Compliance und nächste Aktionen ohne überladene Analysewand.", ["Offene Reviews", "Risikosignale", "Plan anpassen"]],
+          ["Athlete Flow", "Zeigt nur, was heute relevant ist: Session, Makros, Feedback und Chat.", ["Heute", "Ziele", "Feedback"]]
+        ],
+        quoteTitle: "Daten helfen nur, wenn sie zur nächsten Aktion führen.",
+        quote: "Diese Richtung ist am besten, wenn fotus als professionelles Coaching-OS wahrgenommen werden soll."
+      },
+      {
+        id: "coach-os",
+        name: "Coach OS",
+        theme: "theme-coach",
+        label: "04 · neu · bold, coach-first, operativ",
+        headline: "Dein Coaching-Betrieb auf einen Blick.",
+        lead: "fotus macht aus Plänen, Athletenstatus, Videos, Ernährung und Nachrichten ein ruhiges Operating System für moderne Coaches.",
+        cta: "Coach-Zugang anfragen",
+        secondary: "Ablauf ansehen",
+        proof: [["heute", "sehen, wer Hilfe braucht"], ["schnell", "Plan, Review und Nachricht verbinden"], ["klar", "weniger Nacharbeit nach Sessions"]],
+        phoneTitle: "Coach OS.",
+        phoneCopy: "Alles, was heute Aufmerksamkeit braucht, steht oben.",
+        phoneCards: [
+          ["Heute wichtig", "3 Reviews · 2 Plan-Updates", "Jetzt", 100],
+          ["Konsti", "Kniebeuge-Video wartet", "Review", 72],
+          ["Lena", "Protein-Ziel seit 3 Tagen niedrig", "Signal", 58]
+        ],
+        philosophyTitle: "Für Coaches, die weniger hinterherlaufen wollen.",
+        philosophyCopy: "Diese Richtung ist deutlich coach-first. Sie verkauft fotus als Arbeitszentrale: nicht mehr WhatsApp, Tabellen und verstreute Videos, sondern ein strukturierter Tagesüberblick.",
+        features: [
+          ["D", "Dashboard als Startpunkt", "Der Coach sieht Prioritäten statt nur Daten."],
+          ["P", "Planung bleibt im Fluss", "Planänderungen, Übungsvideos und Ernährungsvorgaben sind schnell erreichbar."],
+          ["A", "Athletenstatus ohne Suchen", "Das System zeigt, wo Rückmeldung, Motivation oder Anpassung gebraucht wird."]
+        ],
+        roles: [
+          ["Planung", "Templates, Zuweisungen, Übungen und Coach-Hinweise in einem Ablauf.", ["Plan erstellen", "Video verknüpfen", "Ziel setzen"]],
+          ["Inbox", "Form-Checks, Nachrichten und Signale priorisiert statt chronologisch verschüttet.", ["Review", "Antwort", "Anpassen"]]
+        ],
+        quoteTitle: "Der Coach soll steuern, nicht verwalten.",
+        quote: "Diese Richtung ist am besten, wenn die Landing Page Coaches direkt als zahlende Zielgruppe überzeugen soll."
+      },
+      {
+        id: "launch",
+        name: "Product Launch",
+        theme: "theme-launch",
+        label: "05 · neu · minimal, Apple-like, produktfokussiert",
+        headline: "Einfach gutes Coaching.",
+        lead: "Eine reduzierte, sehr hochwertige Launch-Seite, die fotus wie ein fertiges iOS-Produkt präsentiert: ruhig, klar, selbstbewusst.",
+        cta: "Early Access",
+        secondary: "Mehr erfahren",
+        proof: [["einfach", "für Coach und Athlet"], ["mobil", "gebaut für tägliche Nutzung"], ["verbunden", "Training, Ernährung, Feedback"]],
+        phoneTitle: "fotus",
+        phoneCopy: "Alles, was dein Coaching heute braucht.",
+        phoneCards: [
+          ["Training", "Lower Body · 5 Übungen", "Start", 78],
+          ["Ernährung", "Tagesziel im Blick", "92%", 92],
+          ["Feedback", "Review ist bereit", "Neu", 100]
+        ],
+        philosophyTitle: "Weniger erklären. Mehr zeigen.",
+        philosophyCopy: "Diese Richtung ist maximal reduziert. Die Seite soll aussehen wie ein starkes Produkt-Announcement: wenige Worte, starke Screens, klare Hierarchie.",
+        features: [
+          ["1", "Produkt im Vordergrund", "Der iPhone-Screen ist der Star, nicht ein langer Marketingtext."],
+          ["2", "Sehr klare Sprache", "Kurze Sätze, keine Buzzwords, keine künstliche Komplexität."],
+          ["3", "App-Store-tauglich", "Wirkt wie eine Launch-Seite, die direkt Vertrauen in ein fertiges Produkt schafft."]
+        ],
+        roles: [
+          ["Für Coaches", "Überblick, Pläne, Reviews und Ernährungssignale ohne Reibung.", ["Überblick", "Reviews", "Planung"]],
+          ["Für Athleten", "Heute wissen, was zu tun ist, und Feedback dort sehen, wo es hilft.", ["Training", "Makros", "Chat"]]
+        ],
+        quoteTitle: "Wenn es gut gebaut ist, fühlt es sich selbstverständlich an.",
+        quote: "Diese Richtung ist am besten, wenn fotus sehr reif, minimal und iOS-premium wirken soll."
+      }
+    ];
+
+    const shell = document.getElementById("shell");
+    const tabs = document.getElementById("tabs");
+    const landing = document.getElementById("landing");
+
+    function sectionFeatures(items) {
+      return items.map((item) => `
+        <article class="feature">
+          <div class="icon">${item[0]}</div>
+          <div><h3>${item[1]}</h3><p>${item[2]}</p></div>
+        </article>
+      `).join("");
+    }
+
+    function roleCards(items) {
+      return items.map((role) => `
+        <article class="role-card">
+          <div><h3>${role[0]}</h3><p>${role[1]}</p></div>
+          <div class="mini-ui">
+            ${role[2].map((label, index) => `<div class="mini-row"><div>${label}<span>${index === 0 ? "wichtig im Alltag" : index === 1 ? "direkt erreichbar" : "klar priorisiert"}</span></div><div class="tag">${index + 1}</div></div>`).join("")}
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function render(direction) {
+      shell.className = `app-shell ${direction.theme}`;
+      landing.innerHTML = `
+        <section class="hero">
+          <div>
+            <div class="eyeline">${direction.label}</div>
+            <h1>${direction.headline}</h1>
+            <p class="lead">${direction.lead}</p>
+            <div class="actions">
+              <a class="button" href="#cta">${direction.cta}</a>
+              <a class="button secondary" href="#produkt">${direction.secondary}</a>
+            </div>
+            <div class="proof">
+              ${direction.proof.map((item) => `<div class="proof-item"><strong>${item[0]}</strong>${item[1]}</div>`).join("")}
+            </div>
+          </div>
+
+          <div class="visual" aria-label="Mobile Produktvorschau">
+            <div class="phone">
+              <div class="screen">
+                <div class="mobile-top"><span>fotus</span><span class="hamburger">≡</span></div>
+                <h2>${direction.phoneTitle}</h2>
+                <p>${direction.phoneCopy}</p>
+                <a class="mobile-cta">${direction.cta}</a>
+                <div class="app-stack">
+                  ${direction.phoneCards.map((card) => `
+                    <div class="app-card">
+                      <div class="app-row"><div>${card[0]}<span>${card[1]}</span></div><div class="tag">${card[2]}</div></div>
+                      <div class="progress"><i style="--w:${card[3]}%"></i></div>
+                    </div>
+                  `).join("")}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </article>
+        </section>
 
-    <article id="m2" class="mockup-card m2">
-      <div class="card-copy">
-        <div>
-          <div class="number">02 · Hell / Athlete-friendly</div>
-          <h2>Everyday Clarity</h2>
-          <p class="description">Leichter, zugänglicher, weniger „Tool“. Diese Richtung fühlt sich für Athleten besonders verständlich an und betont Alltagstauglichkeit.</p>
-        </div>
-        <div class="best-for">
-          <div><span class="bullet"></span><span>Stark, wenn die App freundlich und massentauglich wirken soll.</span></div>
-          <div><span class="bullet"></span><span>Weniger technisch, mehr „ich weiß sofort, was zu tun ist“.</span></div>
-          <div><span class="bullet"></span><span>Ideal für mobile App-Store- und Waitlist-Kommunikation.</span></div>
-        </div>
-      </div>
-
-      <div class="phone-stage">
-        <div class="phone">
-          <div class="screen">
-            <div class="mobile-nav"><span>fotus</span><span class="menu">≡</span></div>
-            <h3>Heute ist klar.</h3>
-            <p>Dein Plan, deine Ziele und dein Coach-Feedback an einem Ort.</p>
-            <a class="mobile-button">Loslegen</a>
-            <div class="date-row"><span>Mo</span><span>Di</span><span class="active">Mi</span><span>Do</span><span>Fr</span></div>
-            <div class="ui-stack">
-              <div class="ui-card row"><div>Lower Body<span>5 Übungen · 52 Minuten</span></div><div class="tag">Start</div></div>
-              <div class="ui-card">
-                <div class="row"><div>Protein<span>132 von 150 g</span></div><div class="tag">88%</div></div>
-                <div class="progress"><i style="--w:88%"></i></div>
-              </div>
-              <div class="ui-card row"><div>Coach-Feedback<span>Kniebeuge-Review bereit</span></div><div class="tag">Neu</div></div>
-            </div>
-            <div class="signature">einfach dranbleiben</div>
+        <section id="produkt" class="page-section section-grid">
+          <div>
+            <div class="eyeline">Philosophie</div>
+            <h2 class="section-title">${direction.philosophyTitle}</h2>
+            <p class="section-copy">${direction.philosophyCopy}</p>
           </div>
-        </div>
-      </div>
-    </article>
+          <div class="feature-list">${sectionFeatures(direction.features)}</div>
+        </section>
 
-    <article id="m3" class="mockup-card m3">
-      <div class="card-copy">
-        <div>
-          <div class="number">03 · System / Two-app story</div>
-          <h2>Two-App Rhythm</h2>
-          <p class="description">Diese Richtung erklärt sofort das Produktmodell: Coach und Athlet haben getrennte Apps, aber einen gemeinsamen Rhythmus.</p>
-        </div>
-        <div class="best-for">
-          <div><span class="bullet"></span><span>Stark, wenn die Zwei-App-Idee im Hero klar werden soll.</span></div>
-          <div><span class="bullet"></span><span>Sehr gut für Investoren, Coaches und Produkt-Demos.</span></div>
-          <div><span class="bullet"></span><span>Erklärt das System, ohne lange Feature-Listen zu brauchen.</span></div>
-        </div>
-      </div>
+        <section class="page-section">
+          <div class="eyeline">Coach und Athlet</div>
+          <h2 class="section-title">Zwei Rollen. Ein einfacher Ablauf.</h2>
+          <p class="section-copy">fotus trennt die Oberflächen, damit beide Seiten weniger sehen müssen und trotzdem besser zusammenarbeiten.</p>
+          <div class="split">${roleCards(direction.roles)}</div>
+        </section>
 
-      <div class="phone-stage">
-        <div class="phone">
-          <div class="screen">
-            <div class="mobile-nav"><span>fotus</span><span class="menu">≡</span></div>
-            <h3>Zwei Apps. Ein Ablauf.</h3>
-            <p>Der Coach steuert, der Athlet führt aus, beide bleiben verbunden.</p>
-            <div class="dual">
-              <div class="mini-phone-card">
-                <strong>Coach</strong>
-                <div class="mini-line" style="width:78%"></div>
-                <div class="mini-line" style="width:56%"></div>
-                <div class="mini-line" style="width:90%; background:var(--accent)"></div>
-              </div>
-              <div class="mini-phone-card">
-                <strong>Athlet</strong>
-                <div class="mini-line" style="width:66%"></div>
-                <div class="mini-line" style="width:88%; background:var(--accent)"></div>
-                <div class="mini-line" style="width:50%"></div>
-              </div>
-            </div>
-            <div class="ui-stack">
-              <div class="ui-card row"><div>Plan übertragen<span>Training und Ziele sind bereit</span></div><div class="tag">Sync</div></div>
-              <div class="ui-card row"><div>Feedback zurück<span>Form-Check ist reviewt</span></div><div class="tag">Fertig</div></div>
-              <div class="ui-card row"><div>Kommunikation<span>Fragen bleiben im Kontext</span></div><div class="tag">Chat</div></div>
-            </div>
+        <section class="quote">
+          <h2 class="quote-title">${direction.quoteTitle}</h2>
+          <p>${direction.quote}</p>
+        </section>
+
+        <section id="cta" class="final-cta">
+          <div class="cta-note">Diese Richtung ist eine vollständige Landing-Page-Positionierung. Sie kann als Grundlage für die finale Website oder für Claude Design verwendet werden.</div>
+          <div class="cta-card">
+            <h2>${direction.cta}</h2>
+            <p>Für Coaches und Athleten, die Training, Ernährung und Feedback in einem einfachen, alltagstauglichen System verbinden wollen.</p>
+            <a class="button" href="mailto:hello@fotus-fitness.de">${direction.cta}</a>
           </div>
-        </div>
-      </div>
-    </article>
+        </section>
+      `;
 
-    <article id="m4" class="mockup-card m4">
-      <div class="card-copy">
-        <div>
-          <div class="number">04 · Emotional / Human coaching</div>
-          <h2><span class="serif">Human</span> Coaching</h2>
-          <p class="description">Mehr Marke, mehr Wärme, aber trotzdem nicht kitschig. Diese Richtung verkauft nicht nur Software, sondern die Beziehung zwischen Coach und Athlet.</p>
-        </div>
-        <div class="best-for">
-          <div><span class="bullet"></span><span>Stark, wenn fotus nahbarer und weniger SaaS wirken soll.</span></div>
-          <div><span class="bullet"></span><span>Gut für eine Landing Page mit mehr Storytelling und Testimonials.</span></div>
-          <div><span class="bullet"></span><span>Betont: Es soll sich für beide Seiten einfach und menschlich anfühlen.</span></div>
-        </div>
-      </div>
+      document.querySelectorAll(".tab").forEach((tab) => {
+        tab.setAttribute("aria-selected", String(tab.dataset.id === direction.id));
+      });
+      history.replaceState(null, "", `#${direction.id}`);
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
 
-      <div class="phone-stage">
-        <div class="phone">
-          <div class="screen">
-            <div class="mobile-nav"><span>fotus</span><span class="menu">≡</span></div>
-            <h3>Coaching, das sich leicht anfühlt.</h3>
-            <p>Ein Ort für Pläne, Ziele, Rückmeldungen und die kleinen Hinweise, die Fortschritt möglich machen.</p>
-            <div class="media-block"></div>
-            <div class="ui-stack">
-              <div class="ui-card row"><div>Coach-Hinweis<span>„Heute ruhig starten, Fokus Technik.“</span></div><div class="tag">Neu</div></div>
-              <div class="ui-card row"><div>Training erledigt<span>4 von 5 Übungen abgeschlossen</span></div><div class="tag">80%</div></div>
-            </div>
-            <div class="signature">ein System, das mitdenkt</div>
-          </div>
-        </div>
-      </div>
-    </article>
+    tabs.innerHTML = directions.map((direction) => `<button class="tab" data-id="${direction.id}" aria-selected="false">${direction.name}</button>`).join("");
+    tabs.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-id]");
+      if (!button) return;
+      render(directions.find((direction) => direction.id === button.dataset.id));
+    });
 
-    <article id="m5" class="mockup-card m5">
-      <div class="card-copy">
-        <div>
-          <div class="number">05 · Präzise / Performance product</div>
-          <h2>Precision Flow</h2>
-          <p class="description">Sehr klar, modern und leistungsorientiert. Diese Richtung wirkt wie ein ernsthaftes Produkt für Coaches, die mit Struktur und Daten arbeiten.</p>
-        </div>
-        <div class="best-for">
-          <div><span class="bullet"></span><span>Stark für ambitionierte Coaches und datenbewusste Athleten.</span></div>
-          <div><span class="bullet"></span><span>Mehr Produktivität, weniger Lifestyle.</span></div>
-          <div><span class="bullet"></span><span>Gut, wenn fotus als professionelles Coaching-OS positioniert werden soll.</span></div>
-        </div>
-      </div>
-
-      <div class="phone-stage">
-        <div class="phone">
-          <div class="screen">
-            <div class="mobile-nav"><span>fotus</span><span class="menu">≡</span></div>
-            <h3>Alles im richtigen Kontext.</h3>
-            <p>Plan, Ausführung, Ernährung und Review werden zu einem präzisen Coaching-Flow.</p>
-            <div class="ui-stack">
-              <div class="ui-card">
-                <div class="row"><div>Plan-Adhärenz<span>Diese Woche</span></div><div class="tag">86%</div></div>
-                <div class="progress"><i style="--w:86%"></i></div>
-              </div>
-              <div class="ui-card">
-                <div class="row"><div>Makro-Konstanz<span>Letzte 7 Tage</span></div><div class="tag">74%</div></div>
-                <div class="progress"><i style="--w:74%"></i></div>
-              </div>
-              <div class="ui-card">
-                <div class="row"><div>Form-Check Qualität<span>Technikfeedback</span></div><div class="tag">Review</div></div>
-                <div class="progress"><i style="--w:64%"></i></div>
-              </div>
-              <div class="ui-card row"><div>Nächste Aktion<span>Plan für Freitag anpassen</span></div><div class="tag">Heute</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-  </main>
+    const initialId = window.location.hash.replace("#", "");
+    render(directions.find((direction) => direction.id === initialId) || directions[0]);
+  </script>
 </body>
 </html>
