@@ -232,6 +232,128 @@
       transform: rotate(var(--panel-rotate, -3deg));
     }
 
+    .dashboard-preview {
+      width: min(620px, 96%);
+      min-height: 440px;
+      border-radius: 34px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.026)),
+        color-mix(in srgb, var(--surface) 88%, black);
+      box-shadow: 0 34px 100px rgba(0,0,0,.42);
+      padding: 22px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .dashboard-preview::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 8%, transparent)),
+        repeating-linear-gradient(0deg, transparent 0 42px, rgba(255,255,255,.04) 42px 43px);
+      pointer-events: none;
+    }
+
+    .dashboard-preview > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .dash-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .dash-title {
+      color: var(--text);
+      font-size: 23px;
+      font-weight: 760;
+      line-height: 1.05;
+    }
+
+    .dash-sub {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.38;
+      max-width: 350px;
+    }
+
+    .dash-pill {
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+
+    .dash-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .dash-metric {
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      padding: 14px;
+      min-height: 96px;
+    }
+
+    .dash-metric strong {
+      display: block;
+      color: var(--accent);
+      font-size: 28px;
+      line-height: 1;
+      margin-bottom: 9px;
+    }
+
+    .dash-metric span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.28;
+    }
+
+    .dash-table {
+      display: grid;
+      gap: 9px;
+    }
+
+    .dash-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.052);
+      border: 1px solid var(--line);
+      padding: 12px 13px;
+      font-size: 14px;
+      font-weight: 620;
+    }
+
+    .dash-row span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 460;
+      margin-top: 3px;
+    }
+
+    .dash-row .tag {
+      background: color-mix(in srgb, var(--accent) 15%, transparent);
+    }
+
     .phone {
       width: min(390px, 88vw);
       aspect-ratio: 9 / 19.5;
@@ -242,6 +364,15 @@
       position: relative;
       z-index: 2;
       transform: rotate(var(--phone-rotate, 2deg));
+    }
+
+    .client-phone {
+      position: absolute;
+      width: min(245px, 42vw);
+      right: 0;
+      bottom: 34px;
+      z-index: 3;
+      transform: rotate(var(--client-phone-rotate, 4deg));
     }
 
     .phone::before {
@@ -677,7 +808,18 @@
       .proof { grid-template-columns: 1fr; }
       .visual { min-height: 620px; margin-top: 32px; }
       .visual::before { inset: 34px -20px 26px 16px; }
+      .dashboard-preview { width: 100%; min-height: 430px; padding: 18px; }
+      .dash-metrics { grid-template-columns: 1fr; }
+      .dash-row { font-size: 13px; }
       .phone { width: min(360px, 90vw); transform: none; }
+      .client-phone {
+        position: relative;
+        width: min(300px, 78vw);
+        right: auto;
+        bottom: auto;
+        margin-top: -70px;
+        justify-self: end;
+      }
       .section-grid, .split, .quote, .final-cta { grid-template-columns: 1fr; }
       .split { gap: 14px; }
       .role-card { min-height: 320px; }
@@ -699,159 +841,199 @@
   <script>
     const directions = [
       {
-        id: "everyday",
-        name: "Everyday Clarity",
-        theme: "theme-everyday",
-        label: "01 · Favorit 2 · hell, klar, benutzerfreundlich",
-        headline: "Heute ist klar.",
-        lead: "fotus zeigt Athleten, was heute zählt: Training, Ernährung, Coach-Feedback und Nachrichten in einem Ablauf, der nicht erklärt werden muss.",
-        cta: "Early Access anfragen",
-        secondary: "Produkt ansehen",
-        proof: [["1", "Tagesplan statt verstreuter Aufgaben"], ["2", "Apps für Coach und Athlet"], ["0", "unnötige Rückfragen im Alltag"]],
-        phoneTitle: "Heute ist klar.",
-        phoneCopy: "Dein Training, deine Ziele und dein Coach-Feedback an einem Ort.",
-        phoneCards: [
-          ["Lower Body", "5 Übungen · 52 Minuten", "Start", 72],
-          ["Protein", "132 von 150 g", "88%", 88],
-          ["Coach-Feedback", "Kniebeuge-Review bereit", "Neu", 100]
-        ],
-        philosophyTitle: "Einfach genug für jeden Tag.",
-        philosophyCopy: "Diese Richtung verkauft fotus als Produkt, das Athleten sofort verstehen. Weniger Druck, weniger Bedienlogik, mehr Klarheit im Alltag.",
-        features: [
-          ["A", "Athlet zuerst", "Die Landing Page beginnt beim konkreten Nutzen: App öffnen, wissen was ansteht, durchziehen."],
-          ["C", "Coach bleibt sichtbar", "Coaching ist präsent, aber nicht schwer. Feedback und Ziele fühlen sich wie Unterstützung an."],
-          ["U", "Usability als Marke", "Der Look transportiert: fotus ist nicht kompliziert, sondern ein System, das einfach funktioniert."]
-        ],
-        roles: [
-          ["fotus Coach", "Plant, setzt Ziele, gibt Feedback und sieht, wo Aufmerksamkeit gebraucht wird.", ["Review offen", "Plan läuft aus", "Makro-Signal"]],
-          ["fotus Fitness", "Führt Athleten durch Training, Ernährung, Form-Checks und Nachrichten.", ["Heute trainieren", "Makros im Blick", "Feedback erhalten"]]
-        ],
-        quoteTitle: "Nicht mehr überlegen, wo etwas steht.",
-        quote: "Diese Richtung ist am besten, wenn fotus freundlich, zugänglich und sehr benutzerfreundlich wirken soll."
-      },
-      {
-        id: "human",
-        name: "Human Coaching",
-        theme: "theme-human",
-        label: "02 · Favorit 4 · emotional, editorial, menschlich",
-        headline: "<span class='serif'>Coaching</span>, das sich leicht anfühlt.",
-        lead: "fotus bringt Struktur in die Beziehung zwischen Coach und Athlet, ohne sie in ein kaltes Dashboard zu verwandeln.",
-        cta: "Early Access anfragen",
-        secondary: "Story ansehen",
-        proof: [["nah", "Feedback bleibt persönlich"], ["klar", "nächster Schritt statt Tool-Chaos"], ["ruhig", "weniger Verwaltung für beide Seiten"]],
-        phoneTitle: "Dein Coach ist da.",
-        phoneCopy: "Plan, Hinweis, Form-Check und Gespräch bleiben im Zusammenhang.",
-        phoneCards: [
-          ["Coach-Hinweis", "Heute ruhig starten, Fokus Technik.", "Neu", 100],
-          ["Training", "4 von 5 Übungen abgeschlossen", "80%", 80],
-          ["Form-Check", "Video ist beim Coach", "Wartet", 55]
-        ],
-        philosophyTitle: "Struktur, ohne Distanz zu schaffen.",
-        philosophyCopy: "Diese Richtung macht die Beziehung zwischen Coach und Athlet zum emotionalen Zentrum. Sie eignet sich, wenn fotus nicht nur als Tool, sondern als Begleiter wahrgenommen werden soll.",
-        features: [
-          ["H", "Menschliche Oberfläche", "Die UI wirkt weich genug für Alltag und ernst genug für professionelles Coaching."],
-          ["F", "Feedback mit Kontext", "Rückmeldungen hängen an Übung, Ziel und Session. Dadurch wirkt Coaching präzise, aber nicht bürokratisch."],
-          ["S", "Story statt Feature-Liste", "Die Landing Page erzählt, warum es leichter wird, nicht nur was technisch möglich ist."]
-        ],
-        roles: [
-          ["Coach", "Gibt klare Hinweise, ohne aus Chat, Tabellen und Videos einen Verwaltungsjob zu machen.", ["Hinweis senden", "Review geben", "Ziel anpassen"]],
-          ["Athlet", "Sieht den nächsten Schritt und fühlt sich begleitet statt kontrolliert.", ["Einheit starten", "Video senden", "Antwort lesen"]]
-        ],
-        quoteTitle: "Coaching soll sich nicht nach Verwaltung anfühlen.",
-        quote: "Diese Richtung ist am besten, wenn fotus emotional, hochwertig und markenstärker wirken soll."
-      },
-      {
-        id: "precision",
-        name: "Precision Flow",
-        theme: "theme-precision",
-        label: "03 · Favorit 5 · präzise, datenstark, professionell",
-        headline: "Alles im richtigen Kontext.",
-        lead: "fotus verbindet Plan, Ausführung, Ernährung, Form-Check und Kommunikation zu einem präzisen Flow für messbaren Fortschritt.",
-        cta: "Early Access anfragen",
-        secondary: "Flow ansehen",
-        proof: [["86%", "Plan-Adhärenz im Blick"], ["74%", "Makro-Konstanz sichtbar"], ["1", "nächste sinnvolle Aktion"]],
-        phoneTitle: "Precision Flow.",
-        phoneCopy: "Jede Rückmeldung landet dort, wo sie den nächsten Fortschritt auslöst.",
-        phoneCards: [
-          ["Plan-Adhärenz", "Diese Woche", "86%", 86],
-          ["Makro-Konstanz", "Letzte 7 Tage", "74%", 74],
-          ["Form-Check Qualität", "Technikfeedback", "Review", 64]
-        ],
-        philosophyTitle: "Professionell, aber nicht kompliziert.",
-        philosophyCopy: "Diese Richtung positioniert fotus als ernsthaftes Coaching-System. Sie eignet sich für Coaches, die Struktur, Daten und klare nächste Aktionen wollen.",
-        features: [
-          ["P", "Plan und Ausführung verbunden", "Geplante Arbeit und tatsächliche Logs bleiben vergleichbar, ohne dass Athleten Tabellen pflegen müssen."],
-          ["E", "Ernährung im Coaching-Kontext", "Makros werden nicht isoliert betrachtet, sondern als Teil des Fortschritts."],
-          ["R", "Reviews werden actionable", "Form-Checks führen zu konkreten Anpassungen statt losen Kommentaren."]
-        ],
-        roles: [
-          ["Coach Dashboard", "Zeigt offene Reviews, Compliance und nächste Aktionen ohne überladene Analysewand.", ["Offene Reviews", "Risikosignale", "Plan anpassen"]],
-          ["Athlete Flow", "Zeigt nur, was heute relevant ist: Session, Makros, Feedback und Chat.", ["Heute", "Ziele", "Feedback"]]
-        ],
-        quoteTitle: "Daten helfen nur, wenn sie zur nächsten Aktion führen.",
-        quote: "Diese Richtung ist am besten, wenn fotus als professionelles Coaching-OS wahrgenommen werden soll."
-      },
-      {
-        id: "coach-os",
-        name: "Coach OS",
+        id: "luxury",
+        name: "Luxury Performance",
         theme: "theme-coach",
-        label: "04 · neu · bold, coach-first, operativ",
-        headline: "Dein Coaching-Betrieb auf einen Blick.",
-        lead: "fotus macht aus Plänen, Athletenstatus, Videos, Ernährung und Nachrichten ein ruhiges Operating System für moderne Coaches.",
+        label: "01 · Luxury Performance · dunkel, teuer, coach-first",
+        headline: "Premium Coaching. Einfach gesteuert.",
+        lead: "fotus ist die Premium-Coaching-Software für Coaches, die Training, Ernährung, Form-Checks und Kundenkommunikation in einem starken Dashboard steuern wollen.",
         cta: "Coach-Zugang anfragen",
-        secondary: "Ablauf ansehen",
-        proof: [["heute", "sehen, wer Hilfe braucht"], ["schnell", "Plan, Review und Nachricht verbinden"], ["klar", "weniger Nacharbeit nach Sessions"]],
-        phoneTitle: "Coach OS.",
-        phoneCopy: "Alles, was heute Aufmerksamkeit braucht, steht oben.",
-        phoneCards: [
-          ["Heute wichtig", "3 Reviews · 2 Plan-Updates", "Jetzt", 100],
-          ["Konsti", "Kniebeuge-Video wartet", "Review", 72],
-          ["Lena", "Protein-Ziel seit 3 Tagen niedrig", "Signal", 58]
+        secondary: "Dashboard ansehen",
+        proof: [["Dashboard", "alle Kunden und Prioritäten im Blick"], ["Premium", "professionelles Erlebnis für deine Kunden"], ["einfach", "weniger Verwaltung, klarerer Ablauf"]],
+        dashboardTitle: "Coach Dashboard",
+        dashboardCopy: "Reviews, Trainingsstatus, Ernährungssignale und offene Kundenaktionen an einem Ort.",
+        dashboardMetrics: [["12", "aktive Premium-Kunden"], ["3", "Form-Checks offen"], ["91%", "Plan-Adhärenz"]],
+        dashboardRows: [
+          ["Konsti", "Kniebeuge-Video wartet auf Review", "Review"],
+          ["Lena", "Protein-Ziel seit 3 Tagen niedrig", "Signal"],
+          ["Timo", "Planblock endet am Sonntag", "Plan"]
         ],
-        philosophyTitle: "Für Coaches, die weniger hinterherlaufen wollen.",
-        philosophyCopy: "Diese Richtung ist deutlich coach-first. Sie verkauft fotus als Arbeitszentrale: nicht mehr WhatsApp, Tabellen und verstreute Videos, sondern ein strukturierter Tagesüberblick.",
-        features: [
-          ["D", "Dashboard als Startpunkt", "Der Coach sieht Prioritäten statt nur Daten."],
-          ["P", "Planung bleibt im Fluss", "Planänderungen, Übungsvideos und Ernährungsvorgaben sind schnell erreichbar."],
-          ["A", "Athletenstatus ohne Suchen", "Das System zeigt, wo Rückmeldung, Motivation oder Anpassung gebraucht wird."]
-        ],
-        roles: [
-          ["Planung", "Templates, Zuweisungen, Übungen und Coach-Hinweise in einem Ablauf.", ["Plan erstellen", "Video verknüpfen", "Ziel setzen"]],
-          ["Inbox", "Form-Checks, Nachrichten und Signale priorisiert statt chronologisch verschüttet.", ["Review", "Antwort", "Anpassen"]]
-        ],
-        quoteTitle: "Der Coach soll steuern, nicht verwalten.",
-        quote: "Diese Richtung ist am besten, wenn die Landing Page Coaches direkt als zahlende Zielgruppe überzeugen soll."
-      },
-      {
-        id: "launch",
-        name: "Product Launch",
-        theme: "theme-launch",
-        label: "05 · neu · minimal, Apple-like, produktfokussiert",
-        headline: "Einfach gutes Coaching.",
-        lead: "Eine reduzierte, sehr hochwertige Launch-Seite, die fotus wie ein fertiges iOS-Produkt präsentiert: ruhig, klar, selbstbewusst.",
-        cta: "Early Access",
-        secondary: "Mehr erfahren",
-        proof: [["einfach", "für Coach und Athlet"], ["mobil", "gebaut für tägliche Nutzung"], ["verbunden", "Training, Ernährung, Feedback"]],
-        phoneTitle: "fotus",
-        phoneCopy: "Alles, was dein Coaching heute braucht.",
+        phoneTitle: "Heute klar.",
+        phoneCopy: "Der Kunde sieht Training, Ziele und Feedback ohne Reibung.",
         phoneCards: [
           ["Training", "Lower Body · 5 Übungen", "Start", 78],
-          ["Ernährung", "Tagesziel im Blick", "92%", 92],
-          ["Feedback", "Review ist bereit", "Neu", 100]
+          ["Ernährung", "132 von 150 g Protein", "88%", 88],
+          ["Feedback", "Kniebeuge-Review bereit", "Neu", 100]
         ],
-        philosophyTitle: "Weniger erklären. Mehr zeigen.",
-        philosophyCopy: "Diese Richtung ist maximal reduziert. Die Seite soll aussehen wie ein starkes Produkt-Announcement: wenige Worte, starke Screens, klare Hierarchie.",
+        philosophyTitle: "Gebaut für Coaches, die hochwertig betreuen.",
+        philosophyCopy: "Diese Richtung wirkt wie eine Private-Club-Software für moderne Fitness Coaches. Das Dashboard ist das Hauptsignal; die Kunden-App zeigt, dass die Betreuung für den Kunden trotzdem leicht bleibt.",
         features: [
-          ["1", "Produkt im Vordergrund", "Der iPhone-Screen ist der Star, nicht ein langer Marketingtext."],
-          ["2", "Sehr klare Sprache", "Kurze Sätze, keine Buzzwords, keine künstliche Komplexität."],
-          ["3", "App-Store-tauglich", "Wirkt wie eine Launch-Seite, die direkt Vertrauen in ein fertiges Produkt schafft."]
+          ["D", "Dashboard als Zentrum", "Der Coach sieht sofort, welcher Kunde Aufmerksamkeit braucht und welche Aktion als Nächstes sinnvoll ist."],
+          ["K", "Kundenerlebnis auf Premium-Niveau", "Kunden bekommen eine klare App statt verstreuter Nachrichten, PDFs, Tabellen und Videolinks."],
+          ["F", "Feedback mit Kontext", "Form-Checks, Trainingsplan, Ernährung und Chat hängen zusammen, damit Betreuung professionell wirkt."]
         ],
         roles: [
-          ["Für Coaches", "Überblick, Pläne, Reviews und Ernährungssignale ohne Reibung.", ["Überblick", "Reviews", "Planung"]],
-          ["Für Athleten", "Heute wissen, was zu tun ist, und Feedback dort sehen, wo es hilft.", ["Training", "Makros", "Chat"]]
+          ["Coach Dashboard", "Status, Reviews, Planung, Ernährungssignale und Nachrichten als Steuerzentrale für hochwertige Betreuung.", ["Kundenstatus", "Review-Queue", "Nächste Aktion"]],
+          ["Premium Kundenerlebnis", "Der Kunde erlebt Coaching als klaren Tagesablauf mit Plan, Zielen, Feedback und Chat.", ["Training", "Makros", "Feedback"]]
         ],
-        quoteTitle: "Wenn es gut gebaut ist, fühlt es sich selbstverständlich an.",
-        quote: "Diese Richtung ist am besten, wenn fotus sehr reif, minimal und iOS-premium wirken soll."
+        quoteTitle: "Der Coach wirkt so professionell, wie seine Betreuung tatsächlich ist.",
+        quote: "Diese Richtung ist die beste Wahl, wenn fotus teuer, hochwertig und klar auf Premium-Coaches positioniert werden soll."
+      },
+      {
+        id: "client-experience",
+        name: "Premium Client Experience",
+        theme: "theme-everyday",
+        label: "02 · Favorit 2 · hell, kundennah, benutzerfreundlich",
+        headline: "Die beste Betreuung fühlt sich einfach an.",
+        lead: "fotus gibt Coaches ein professionelles Dashboard und Kunden eine App, die jeden Tag klar macht: was steht an, was wurde erledigt, wo wartet Feedback?",
+        cta: "Early Access anfragen",
+        secondary: "Kundenerlebnis ansehen",
+        proof: [["Kunden", "verstehen sofort den nächsten Schritt"], ["Coach", "steuert alles im Dashboard"], ["Premium", "Betreuung wirkt klar und hochwertig"]],
+        dashboardTitle: "Kundenübersicht",
+        dashboardCopy: "Alle Kunden, Ziele und offenen Aufgaben in einer ruhigen, gut priorisierten Oberfläche.",
+        dashboardMetrics: [["8", "heutige Sessions"], ["4", "neue Kundenupdates"], ["96%", "Antwortquote"]],
+        dashboardRows: [
+          ["Mara", "Check-in und Gewicht aktualisiert", "Neu"],
+          ["Alex", "Session abgeschlossen, Video folgt", "Heute"],
+          ["Jonas", "Makros im Zielbereich", "Stabil"]
+        ],
+        phoneTitle: "Heute ist klar.",
+        phoneCopy: "Training, Ernährung und Coach-Feedback sind ohne Erklärung verständlich.",
+        phoneCards: [
+          ["Heute trainieren", "Oberkörper · 48 Minuten", "Start", 74],
+          ["Tagesziel", "Kalorien und Protein im Blick", "92%", 92],
+          ["Coach", "Antwort zum Form-Check", "Neu", 100]
+        ],
+        philosophyTitle: "Premium heißt nicht kompliziert.",
+        philosophyCopy: "Diese Richtung macht sichtbar, dass hochwertige Betreuung für Kunden leicht verständlich sein muss. Der Coach bekommt Tiefe im Dashboard, der Kunde bekommt Klarheit im Alltag.",
+        features: [
+          ["E", "Einfach für Kunden", "Die Kunden-App reduziert Training, Ernährung und Feedback auf klare nächste Schritte."],
+          ["P", "Professionell für Coaches", "Das Dashboard zeigt Fortschritt, offene Aufgaben und Signale ohne Informationschaos."],
+          ["B", "Betreuung, die hochwertig wirkt", "Jede Interaktion fühlt sich organisiert an: Plan, Ziel, Video, Nachricht und Feedback."]
+        ],
+        roles: [
+          ["Coach Dashboard", "Planung, Kundenstatus und Reviews bleiben strukturiert, auch wenn viele Kunden betreut werden.", ["Übersicht", "Prioritäten", "Review"]],
+          ["Kunden-App", "Kunden erleben die Betreuung als einfach, hochwertig und zuverlässig.", ["Tagesplan", "Ziele", "Coach-Feedback"]]
+        ],
+        quoteTitle: "Wenn Kunden weniger nachfragen müssen, wirkt Betreuung automatisch besser.",
+        quote: "Diese Richtung ist stark, wenn fotus kundenfreundlich, hell und nahbar wirken soll, ohne Premium zu verlieren."
+      },
+      {
+        id: "human-premium",
+        name: "Human Premium",
+        theme: "theme-human",
+        label: "03 · Favorit 4 · emotional, hochwertig, menschlich",
+        headline: "<span class='serif'>Premium</span> Coaching, das nah bleibt.",
+        lead: "fotus macht professionelle Betreuung persönlicher: Der Coach steuert über ein starkes Dashboard, der Kunde erlebt klare Hinweise, Feedback und Fortschritt ohne Tool-Chaos.",
+        cta: "Premium-Zugang anfragen",
+        secondary: "Story ansehen",
+        proof: [["nah", "persönliches Feedback bleibt sichtbar"], ["klar", "Kunden wissen, was zu tun ist"], ["wertig", "Betreuung fühlt sich nach Premium an"]],
+        dashboardTitle: "Betreuungszentrale",
+        dashboardCopy: "Persönliche Hinweise, offene Reviews und Kundenfortschritt ohne kalte Enterprise-Oberfläche.",
+        dashboardMetrics: [["5", "Kunden brauchen Feedback"], ["14", "persönliche Hinweise"], ["87%", "Wochen-Compliance"]],
+        dashboardRows: [
+          ["Lea", "Form-Check: Hüfte stabiler, Lob senden", "Feedback"],
+          ["Ben", "Motivation niedrig, kurze Nachricht", "Kontakt"],
+          ["Nora", "Plan läuft gut, nächste Progression", "Plan"]
+        ],
+        phoneTitle: "Dein Coach ist da.",
+        phoneCopy: "Plan, Ziel und Feedback fühlen sich persönlich und klar an.",
+        phoneCards: [
+          ["Coach-Hinweis", "Heute Fokus Technik, nicht Gewicht", "Neu", 100],
+          ["Training", "4 von 5 Übungen abgeschlossen", "80%", 80],
+          ["Form-Check", "Feedback ist angekommen", "Review", 65]
+        ],
+        philosophyTitle: "Menschlich, aber nicht unorganisiert.",
+        philosophyCopy: "Diese Richtung verbindet Premium-Optik mit Nähe. Sie eignet sich, wenn fotus nicht nur effizient, sondern auch als hochwertiges Betreuungserlebnis wahrgenommen werden soll.",
+        features: [
+          ["H", "Human Interface", "Das Dashboard zeigt Menschen und Situationen, nicht nur Zahlen."],
+          ["F", "Feedback als Erlebnis", "Kunden sehen Hinweise dort, wo sie sie brauchen: bei Training, Ziel und Fortschritt."],
+          ["V", "Vertrauen durch Struktur", "Professionelle Organisation stärkt die Beziehung zwischen Coach und Kunde."]
+        ],
+        roles: [
+          ["Coach Dashboard", "Persönliche Betreuung skalieren, ohne die Nähe zum Kunden zu verlieren.", ["Hinweise", "Reviews", "Kontakt"]],
+          ["Premium Kunde", "Der Kunde fühlt sich geführt, nicht verwaltet.", ["Coach-Hinweis", "Plan", "Feedback"]]
+        ],
+        quoteTitle: "Premium ist nicht nur Design. Premium ist, wenn sich Betreuung zuverlässig anfühlt.",
+        quote: "Diese Richtung ist die beste Wahl, wenn fotus menschlich, exklusiv und emotional hochwertig wirken soll."
+      },
+      {
+        id: "command-center",
+        name: "Coach Command Center",
+        theme: "theme-precision",
+        label: "04 · Favorit 5 weitergedacht · präzise, operativ, dashboard-lastig",
+        headline: "Das Dashboard für High-Level Coaching.",
+        lead: "fotus gibt Coaches eine präzise Steuerzentrale für Kundenstatus, Trainingsplanung, Ernährung, Form-Checks und Kommunikation.",
+        cta: "Dashboard ansehen",
+        secondary: "Workflow ansehen",
+        proof: [["Status", "Kundenfortschritt ohne Suchen"], ["Review", "Form-Checks mit Kontext"], ["Action", "nächste Schritte priorisiert"]],
+        dashboardTitle: "Command Center",
+        dashboardCopy: "Kundenstatus, Compliance, Reviews und nächste Aktionen in einem professionellen Coaching-Dashboard.",
+        dashboardMetrics: [["24", "Kunden im Coaching"], ["7", "Aktionen heute"], ["82%", "Ø Wochen-Compliance"]],
+        dashboardRows: [
+          ["Form-Check Queue", "3 Videos nach Priorität sortiert", "Review"],
+          ["Nutrition Signals", "2 Kunden außerhalb Zielbereich", "Makros"],
+          ["Plan Updates", "4 neue Progressionen vorbereiten", "Plan"]
+        ],
+        phoneTitle: "Klar geführt.",
+        phoneCopy: "Der Kunde sieht nur die relevanten nächsten Schritte.",
+        phoneCards: [
+          ["Heute", "Training und Makro-Ziel", "Aktiv", 86],
+          ["Technik", "Form-Check hochgeladen", "Wartet", 62],
+          ["Plan", "Neue Progression ab Freitag", "Neu", 100]
+        ],
+        philosophyTitle: "Daten müssen zu Entscheidungen führen.",
+        philosophyCopy: "Diese Richtung ist produktiver und schärfer. Sie positioniert fotus als professionelle Steuerzentrale für Coaches, die mit vielen Premium-Kunden strukturiert arbeiten.",
+        features: [
+          ["S", "Status statt Bauchgefühl", "Der Coach sieht, welche Kunden stabil laufen und wo Intervention nötig ist."],
+          ["R", "Review-Prozesse", "Form-Checks werden priorisiert und direkt mit Übung, Plan und Kundenhistorie verbunden."],
+          ["A", "Action-orientiert", "Das Dashboard endet nicht bei Daten, sondern zeigt konkrete nächste Schritte."]
+        ],
+        roles: [
+          ["Coach Command Center", "Operative Steuerung für Premium Coaching: Status, Review, Planung, Ernährung, Chat.", ["Kundenstatus", "Action Queue", "Review"]],
+          ["Client Execution", "Kunden bekommen eine einfache Oberfläche, die komplexe Betreuung leicht wirken lässt.", ["Heute", "Loggen", "Feedback"]]
+        ],
+        quoteTitle: "Premium-Coaching braucht kein Datenchaos, sondern klare Entscheidungen.",
+        quote: "Diese Richtung ist am besten, wenn fotus als professionelles, dashboard-starkes Coaching-System verkauft werden soll."
+      },
+      {
+        id: "studio",
+        name: "Elite Studio",
+        theme: "theme-launch",
+        label: "05 · neu · minimal, exklusiv, Apple-like",
+        headline: "Die Software für Premium Coaching Studios.",
+        lead: "fotus präsentiert deine Betreuung so hochwertig, wie sie ist: ein starkes Coach-Dashboard im Hintergrund, ein klares Kundenerlebnis im Vordergrund.",
+        cta: "Studio-Zugang anfragen",
+        secondary: "Produkt ansehen",
+        proof: [["Studio", "professioneller Auftritt"], ["Dashboard", "alles steuerbar"], ["Kunde", "einfaches Premium-Erlebnis"]],
+        dashboardTitle: "Studio Dashboard",
+        dashboardCopy: "Betreuung, Status und Qualitätssicherung für Coaches und kleine Premium-Studios.",
+        dashboardMetrics: [["18", "betreute Kunden"], ["94%", "Betreuungsquote"], ["4", "offene Reviews"]],
+        dashboardRows: [
+          ["Qualität", "Alle Kunden mit aktuellem Plan", "OK"],
+          ["Feedback", "4 Videos warten auf Review", "Heute"],
+          ["Service", "2 Kunden brauchen Check-in", "Kontakt"]
+        ],
+        phoneTitle: "fotus",
+        phoneCopy: "Ein Premium-Erlebnis für Kunden, die klare Betreuung erwarten.",
+        phoneCards: [
+          ["Training", "Plan für heute bereit", "Start", 78],
+          ["Ernährung", "Tagesziel im Blick", "92%", 92],
+          ["Coach", "Feedback wurde aktualisiert", "Neu", 100]
+        ],
+        philosophyTitle: "Weniger erklären. Mehr Qualität zeigen.",
+        philosophyCopy: "Diese Richtung ist sehr reduziert und launch-orientiert. Sie eignet sich, wenn fotus wie ein fertiges, reifes Premium-Produkt für Coaches und Studios wirken soll.",
+        features: [
+          ["1", "Premium-Auftritt", "Die Landing Page verkauft nicht nur Funktionen, sondern Professionalität."],
+          ["2", "Dashboard im Mittelpunkt", "Der Coach sieht das System als hochwertige Steuerzentrale."],
+          ["3", "Kunde erlebt Einfachheit", "Die komplexe Betreuung wirkt für den Kunden ruhig und selbstverständlich."]
+        ],
+        roles: [
+          ["Coach und Studio", "Dashboard für Betreuung, Reviews, Planung und Qualitätssicherung.", ["Dashboard", "Reviews", "Service"]],
+          ["Premium-Kunden", "Klare App für Training, Ernährung, Feedback und Kommunikation.", ["Heute", "Ziele", "Feedback"]]
+        ],
+        quoteTitle: "Premium-Kunden merken, wenn Betreuung organisiert ist.",
+        quote: "Diese Richtung ist am besten, wenn fotus minimal, sehr hochwertig und wie ein Apple-nahes Produkt wirken soll."
       }
     ];
 
@@ -896,8 +1078,24 @@
             </div>
           </div>
 
-          <div class="visual" aria-label="Mobile Produktvorschau">
-            <div class="phone">
+          <div class="visual" aria-label="Coach Dashboard und Kunden-App Vorschau">
+            <div class="dashboard-preview" aria-label="Coach Dashboard Vorschau">
+              <div class="dash-top">
+                <div>
+                  <div class="dash-title">${direction.dashboardTitle}</div>
+                  <div class="dash-sub">${direction.dashboardCopy}</div>
+                </div>
+                <div class="dash-pill">Live Übersicht</div>
+              </div>
+              <div class="dash-metrics">
+                ${direction.dashboardMetrics.map((metric) => `<div class="dash-metric"><strong>${metric[0]}</strong><span>${metric[1]}</span></div>`).join("")}
+              </div>
+              <div class="dash-table">
+                ${direction.dashboardRows.map((row) => `<div class="dash-row"><div>${row[0]}<span>${row[1]}</span></div><div class="tag">${row[2]}</div></div>`).join("")}
+              </div>
+            </div>
+
+            <div class="phone client-phone">
               <div class="screen">
                 <div class="mobile-top"><span>fotus</span><span class="hamburger">≡</span></div>
                 <h2>${direction.phoneTitle}</h2>
@@ -926,9 +1124,9 @@
         </section>
 
         <section class="page-section">
-          <div class="eyeline">Coach und Athlet</div>
-          <h2 class="section-title">Zwei Rollen. Ein einfacher Ablauf.</h2>
-          <p class="section-copy">fotus trennt die Oberflächen, damit beide Seiten weniger sehen müssen und trotzdem besser zusammenarbeiten.</p>
+          <div class="eyeline">Premium Coaching</div>
+          <h2 class="section-title">Starkes Dashboard. Starkes Kundenerlebnis.</h2>
+          <p class="section-copy">Der Coach bekommt die Steuerzentrale. Der Kunde bekommt eine einfache, hochwertige Betreuungserfahrung. Das ist die eigentliche Produktlogik.</p>
           <div class="split">${roleCards(direction.roles)}</div>
         </section>
 
@@ -938,10 +1136,10 @@
         </section>
 
         <section id="cta" class="final-cta">
-          <div class="cta-note">Diese Richtung ist eine vollständige Landing-Page-Positionierung. Sie kann als Grundlage für die finale Website oder für Claude Design verwendet werden.</div>
+          <div class="cta-note">Diese Richtung ist eine vollständige Landing-Page-Positionierung. Fokus: Premium-Coaching-Software für Coaches, die ihren Kunden ein besseres Betreuungserlebnis geben wollen.</div>
           <div class="cta-card">
             <h2>${direction.cta}</h2>
-            <p>Für Coaches und Athleten, die Training, Ernährung und Feedback in einem einfachen, alltagstauglichen System verbinden wollen.</p>
+            <p>Für Coaches, die Training, Ernährung, Form-Checks, Chat und Kundenstatus in einem professionellen Dashboard steuern wollen.</p>
             <a class="button" href="mailto:hello@fotus-fitness.de">${direction.cta}</a>
           </div>
         </section>
